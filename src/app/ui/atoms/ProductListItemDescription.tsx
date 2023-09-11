@@ -5,9 +5,9 @@ type Props = {
 	product: ProductItemType;
 };
 
-const ProductListItemDescription = ({
+export default function ProductListItemDescription({
 	product: { name, category, price },
-}: Props) => {
+}: Props) {
 	return (
 		<div className="mt-2 flex justify-between">
 			<div>
@@ -21,6 +21,4 @@ const ProductListItemDescription = ({
 			</p>
 		</div>
 	);
-};
-
-export { ProductListItemDescription };
+}

@@ -5,7 +5,7 @@ type Props = {
 	src: string;
 };
 
-const ProductCoverImage = ({ alt, src }: Props) => {
+export default function ProductCoverImage({ alt, src }: Props) {
 	return (
 		<div className="aspect-square overflow-hidden rounded-md border bg-slate-50 hover:bg-slate-100">
 			<Image
@@ -17,6 +17,4 @@ const ProductCoverImage = ({ alt, src }: Props) => {
 			/>
 		</div>
 	);
-};
-
-export { ProductCoverImage };
+}

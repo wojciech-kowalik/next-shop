@@ -1,12 +1,12 @@
 import { type ProductItemType } from "@types";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
-import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
+import ProductCoverImage from "@/ui/atoms/ProductCoverImage";
+import ProductListItemDescription from "@/ui/atoms/ProductListItemDescription";
 
 type Props = {
 	product: ProductItemType;
 };
 
-const ProductListItem = ({ product }: Props) => {
+export default function ProductListItem({ product }: Props) {
 	return (
 		<li>
 			<article>
@@ -18,6 +18,4 @@ const ProductListItem = ({ product }: Props) => {
 			</article>
 		</li>
 	);
-};
-
-export { ProductListItem };
+}
