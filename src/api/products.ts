@@ -1,4 +1,4 @@
-import type { ProductItemType, ProductResponseType } from "@/types";
+import type { ProductResponseType } from "@/types";
 
 const productResponseToProductItem = (productResponse: ProductResponseType) => {
 	return {
