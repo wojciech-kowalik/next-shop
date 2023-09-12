@@ -1,5 +1,6 @@
 "use client";
 
+import { type UrlObject } from "url";
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
@@ -14,7 +15,7 @@ export default function ActiveLink<T extends string>({
 }: {
 	className?: string;
 	activeClassName?: string;
-	href: Route<T> | URL;
+	href: Route<T> | UrlObject;
 	exact?: boolean;
 	children: React.ReactNode;
 }) {

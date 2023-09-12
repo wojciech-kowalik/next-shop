@@ -22,7 +22,8 @@
 		],
 		"paths": {
 			"@/*": ["./src/app/*"],
-			"@types": ["./src/app/types.ts"]
+			"@types": ["./src/app/types.ts"],
+			"@api/*": ["./src/api/*"]
 		}
 	},
 	"include": [
