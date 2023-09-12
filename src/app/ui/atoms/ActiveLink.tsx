@@ -9,15 +9,20 @@ export default function ActiveLink<T extends string>({
 	activeClassName,
 	className,
 	href,
+	exact = false,
 	children,
 }: {
 	className?: string;
 	activeClassName?: string;
 	href: Route<T> | URL;
+	exact?: boolean;
 	children: React.ReactNode;
 }) {
 	const pathname = usePathname();
-	const isActive = pathname === href;
+	const stringPathname = typeof href === "object" ? href.pathname || "" : href;
+	const isActive = exact
+		? pathname === stringPathname
+		: pathname.includes(stringPathname);
 
 	return (
 		<Link href={href} className={clsx(className, isActive && activeClassName)}>
