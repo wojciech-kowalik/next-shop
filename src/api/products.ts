@@ -1,6 +1,8 @@
-import type { ProductResponseType } from "@/types";
+import type { ProductItemType, ProductResponseType } from "@/types";
 
-const productResponseToProductItem = (productResponse: ProductResponseType) => {
+const productResponseToProductItem = (
+	productResponse: ProductResponseType,
+): ProductItemType => {
 	return {
 		id: productResponse.id,
 		name: productResponse.title,
@@ -10,6 +12,7 @@ const productResponseToProductItem = (productResponse: ProductResponseType) => {
 			alt: productResponse.title,
 			src: productResponse.image,
 		},
+		description: productResponse.description,
 	};
 };
 

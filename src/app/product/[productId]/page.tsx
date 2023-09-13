@@ -1,6 +1,29 @@
 import Image from "next/image";
+import { type Metadata } from "next";
 import { getProductById } from "@api/products";
 import { formatMoney } from "@/utils";
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { productId: string };
+}): Promise<Metadata> => {
+	const product = await getProductById(params.productId);
+	return {
+		title: `Product ${product.name}`,
+		description: product.description,
+		openGraph: {
+			title: `Product ${product.name}`,
+			description: product.description,
+			images: [
+				{
+					url: product.coverImage.src,
+					alt: product.coverImage.alt,
+				},
+			],
+		},
+	};
+};
 
 export default async function ProductPage({
 	params,

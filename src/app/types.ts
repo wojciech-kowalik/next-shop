@@ -4,6 +4,7 @@ type ProductItemType = {
 	category: string;
 	price: number;
 	coverImage: { alt: string; src: string };
+	description: string;
 };
 
 type ProductResponseType = {
