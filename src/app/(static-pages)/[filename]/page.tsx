@@ -11,5 +11,9 @@ export default async function StaticPage({
 		() => notFound(),
 	);
 
-	return <Content />;
+	return (
+		<article className="prose">
+			<Content />
+		</article>
+	);
 }

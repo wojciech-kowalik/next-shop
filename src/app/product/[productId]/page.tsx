@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { type Metadata } from "next";
-import { getProductById } from "@api/products";
+import { getProductById, getProducts } from "@api/products";
 import { formatMoney } from "@/utils";
+
+export async function generateStaticParams() {
+	const products = await getProducts();
+
+	return products.map((product) => ({ productId: product.id })).slice(0, 10);
+}
 
 export const generateMetadata = async ({
 	params,
