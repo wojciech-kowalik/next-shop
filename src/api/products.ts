@@ -17,7 +17,7 @@ const productResponseToProductItem = (
 };
 
 export const getProducts = async ({
-	take = 4,
+	take = 8,
 	offset,
 }: {
 	take?: number;

@@ -8,14 +8,19 @@ export default async function ProductsPage({
 	params: { page: number };
 	searchParams?: { [key: string]: string | string[] | undefined };
 }) {
+	const pageSize = 8;
 	const currentPage = searchParams?.page || 1;
-	const products = await getProducts({ offset: +currentPage });
+	const products = await getProducts({ take: pageSize, offset: +currentPage });
 	const count = await getCountProducts();
 
 	return (
 		<>
 			<ProductList products={products} />
-			<Pagination numberOfItems={count} currentPage={+currentPage} />
+			<Pagination
+				numberOfItems={count}
+				currentPage={+currentPage}
+				pageSize={pageSize}
+			/>
 		</>
 	);
 }

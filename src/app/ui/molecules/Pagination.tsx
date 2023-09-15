@@ -1,12 +1,12 @@
 type PaginationProps = {
 	numberOfItems: number;
-	pageSize?: number;
+	pageSize: number;
 	currentPage: number;
 };
 
 export default function Pagination({
 	numberOfItems,
-	pageSize = 4,
+	pageSize,
 	currentPage,
 }: PaginationProps) {
 	const pagesCount = numberOfItems / pageSize;
