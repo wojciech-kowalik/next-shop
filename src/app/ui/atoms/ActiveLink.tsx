@@ -26,7 +26,11 @@ export default function ActiveLink<T extends string>({
 		: pathname.includes(stringPathname);
 
 	return (
-		<Link href={href} className={clsx(className, isActive && activeClassName)}>
+		<Link
+			role="link"
+			href={href}
+			className={clsx(className, isActive && activeClassName)}
+		>
 			{children}
 		</Link>
 	);

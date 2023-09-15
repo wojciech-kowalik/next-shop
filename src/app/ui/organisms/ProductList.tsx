@@ -1,11 +1,11 @@
-import { type ProductItemType } from "@types";
 import ProductListItem from "@/ui/molecules/ProductListItem";
+import { type ProductItemType } from "@/types";
 
-type Props = {
+type ProductListProps = {
 	products: ProductItemType[];
 };
 
-const ProductList = ({ products }: Props) => {
+const ProductList = async ({ products }: ProductListProps) => {
 	return (
 		<ul
 			data-testid="products-list"

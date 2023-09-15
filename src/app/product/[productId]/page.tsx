@@ -4,7 +4,7 @@ import { getProductById, getProducts } from "@api/products";
 import { formatMoney } from "@/utils";
 
 export async function generateStaticParams() {
-	const products = await getProducts();
+	const products = await getProducts({ take: 4, offset: 1 });
 
 	return products.map((product) => ({ productId: product.id })).slice(0, 10);
 }

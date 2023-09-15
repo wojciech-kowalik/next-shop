@@ -16,13 +16,26 @@ const productResponseToProductItem = (
 	};
 };
 
-export const getProducts = async () => {
+export const getProducts = async ({
+	take = 4,
+	offset,
+}: {
+	take?: number;
+	offset: number;
+}) => {
 	const response = await fetch(
-		"https://naszsklep-api.vercel.app/api/products?take=20",
+		`https://naszsklep-api.vercel.app/api/products?take=${take}&offset=${offset}`,
 	);
 	const productsResponse = (await response.json()) as ProductResponseType[];
 
 	return productsResponse.map(productResponseToProductItem);
+};
+
+export const getCountProducts = async () => {
+	const response = await fetch(`https://naszsklep-api.vercel.app/api/products`);
+	const productsResponse = (await response.json()) as ProductResponseType[];
+
+	return productsResponse.length;
 };
 
 export const getProductById = async (id: ProductResponseType["id"]) => {
