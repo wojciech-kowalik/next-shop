@@ -1,5 +1,5 @@
 query ProductsGetList($take: Int!, $offset: Int!) {
 	products(first: $take, skip: $offset) {
-		...ProductListItemFragment
+		...ProductListItem
 	}
 }
