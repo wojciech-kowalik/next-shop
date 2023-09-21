@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navigation from "./ui/organisms/Navigation";
 import Footer from "./ui/organisms/Footer";
-import ActiveLink from "@/ui/atoms/ActiveLink";
 import Header from "@/ui/organisms/Header";
 
 const inter = Inter({ subsets: ["latin"] });
