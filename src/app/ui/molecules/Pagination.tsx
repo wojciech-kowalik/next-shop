@@ -27,7 +27,7 @@ export default function Pagination({
 						<a
 							role="link"
 							className="relative block bg-transparent px-3 py-1.5 text-sm  transition-all duration-300 hover:bg-neutral-200 hover:text-black dark:text-black"
-							href={`/products?page=${page}`}
+							href={`/products/${page}`}
 						>
 							{page}
 						</a>

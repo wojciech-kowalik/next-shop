@@ -21,27 +21,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<Header>
-					<Navigation>
-						<li className="first:pl-4 last:pr-4 lg:px-0">
-							<ActiveLink
-								activeClassName={`border-blue-500 text-slate-700`}
-								className={`flex h-full w-full min-w-[3rem] items-center justify-center border-b-2  px-1 pt-1 text-center text-sm font-medium text-slate-500 hover:border-gray-300`}
-								href="/"
-								exact={true}
-							>
-								Home
-							</ActiveLink>
-						</li>
-						<li className="first:pl-4 last:pr-4 lg:px-0">
-							<ActiveLink
-								activeClassName={`border-blue-500 text-slate-700`}
-								className={`flex h-full w-full min-w-[3rem] items-center justify-center border-b-2  px-1 pt-1 text-center text-sm font-medium text-slate-500 hover:border-gray-300`}
-								href="/products"
-							>
-								All
-							</ActiveLink>
-						</li>
-					</Navigation>
+					<Navigation />
 				</Header>
 				<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-8 py-12 sm:px-6 lg:max-w-7xl">
 					{children}

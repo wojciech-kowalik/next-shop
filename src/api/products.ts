@@ -4,6 +4,7 @@ import {
 	ProductGetByIdDocument,
 	ProductsGetListDocument,
 	type ProductGetByIdQuery,
+	ProductsGetByCategorySlugDocument,
 } from "@gql/graphql";
 
 const productResponseToProductItem = (
@@ -23,7 +24,6 @@ const productResponseToProductItem = (
 	};
 };
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export const getProducts = async ({
 	take = 8,
 	offset,
@@ -33,20 +33,34 @@ export const getProducts = async ({
 }) => {
 	const response = await graphqlFetch(ProductsGetListDocument, {
 		take,
-		offset,
+		offset: offset - 1,
 	});
 	return response.products.map(productResponseToProductItem);
-};
-
-export const getCountProducts = async () => {
-	const response = await fetch(`https://naszsklep-api.vercel.app/api/products`);
-	const productsResponse = (await response.json()) as ProductResponseType[];
-
-	return productsResponse.length;
 };
 
 export const getProductById = async (id: ProductResponseType["id"]) => {
 	const response = await graphqlFetch(ProductGetByIdDocument, { id });
 
 	return productResponseToProductItem(response.product);
+};
+
+export const getProductsByCategorySlug = async ({
+	take = 8,
+	offset,
+	slug,
+}: {
+	take?: number;
+	offset: number;
+	slug: string;
+}) => {
+	const response = await graphqlFetch(ProductsGetByCategorySlugDocument, {
+		slug,
+		take,
+		offset: offset - 1,
+	});
+
+	return {
+		products: response.categories[0].products.map(productResponseToProductItem),
+		categoryName: response.categories[0].name,
+	};
 };
