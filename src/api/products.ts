@@ -1,21 +1,29 @@
 import type { ProductItemType, ProductResponseType } from "@/types";
+import { graphqlFetch } from "@api/fetch";
+import {
+	ProductGetByIdDocument,
+	ProductsGetListDocument,
+	type ProductGetByIdQuery,
+} from "@gql/graphql";
 
 const productResponseToProductItem = (
-	productResponse: ProductResponseType,
-): ProductItemType => {
+	product: ProductGetByIdQuery["product"],
+): ProductItemType | null => {
+	if (!product) return null;
 	return {
-		id: productResponse.id,
-		name: productResponse.title,
-		category: productResponse.category,
-		price: productResponse.price,
+		id: product.id,
+		name: product.name,
+		category: product.categories[0].name,
+		price: product.price,
 		coverImage: {
-			alt: productResponse.title,
-			src: productResponse.image,
+			src: product.images[0].url,
+			alt: product.name,
 		},
-		description: productResponse.description,
+		description: product.description,
 	};
 };
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export const getProducts = async ({
 	take = 8,
 	offset,
@@ -23,12 +31,11 @@ export const getProducts = async ({
 	take?: number;
 	offset: number;
 }) => {
-	const response = await fetch(
-		`https://naszsklep-api.vercel.app/api/products?take=${take}&offset=${offset}`,
-	);
-	const productsResponse = (await response.json()) as ProductResponseType[];
-
-	return productsResponse.map(productResponseToProductItem);
+	const response = await graphqlFetch(ProductsGetListDocument, {
+		take,
+		offset,
+	});
+	return response.products.map(productResponseToProductItem);
 };
 
 export const getCountProducts = async () => {
@@ -39,10 +46,7 @@ export const getCountProducts = async () => {
 };
 
 export const getProductById = async (id: ProductResponseType["id"]) => {
-	const response = await fetch(
-		`https://naszsklep-api.vercel.app/api/products/${id}`,
-	);
-	const productResponse = (await response.json()) as ProductResponseType;
+	const response = await graphqlFetch(ProductGetByIdDocument, { id });
 
-	return productResponseToProductItem(productResponse);
+	return productResponseToProductItem(response.product);
 };

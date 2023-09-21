@@ -23,7 +23,8 @@
 		"paths": {
 			"@/*": ["./src/app/*"],
 			"@types": ["./src/app/types.ts"],
-			"@api/*": ["./src/api/*"]
+			"@api/*": ["./src/api/*"],
+			"@gql/*": ["./src/gql/*"]
 		}
 	},
 	"include": [
@@ -31,7 +32,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"tailwind.config.js"
+		"tailwind.config.js",
+		".graphqlrc.ts"
 	],
 	"exclude": ["node_modules"]
 }

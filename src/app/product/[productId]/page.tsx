@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { type Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@api/products";
 import { formatMoney } from "@/utils";
 
 export async function generateStaticParams() {
 	const products = await getProducts({ take: 4, offset: 1 });
 
-	return products.map((product) => ({ productId: product.id })).slice(0, 10);
+	return products.map((product) => ({ productId: product?.id })).slice(0, 10);
 }
 
 export const generateMetadata = async ({
@@ -15,6 +16,7 @@ export const generateMetadata = async ({
 	params: { productId: string };
 }): Promise<Metadata> => {
 	const product = await getProductById(params.productId);
+	if (!product) return {};
 	return {
 		title: `Product ${product.name}`,
 		description: product.description,
@@ -37,6 +39,8 @@ export default async function ProductPage({
 	params: { productId: string };
 }) {
 	const product = await getProductById(params.productId);
+
+	if (!product) notFound();
 
 	return (
 		<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
