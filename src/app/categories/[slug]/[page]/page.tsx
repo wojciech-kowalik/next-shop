@@ -8,7 +8,7 @@ export default async function CategoryPage({
 	params: { slug: string; page: number };
 }) {
 	const pageSize = 8;
-	const count = 10;
+	const count = 20;
 	const currentPage = params.page || 1;
 	const products = await getProductsByCategorySlug({
 		take: pageSize,

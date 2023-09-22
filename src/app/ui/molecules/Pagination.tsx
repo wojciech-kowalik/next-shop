@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 type PaginationProps = {
 	numberOfItems: number;
 	pageSize: number;
@@ -9,6 +13,7 @@ export default function Pagination({
 	pageSize,
 	currentPage,
 }: PaginationProps) {
+	const pathname = usePathname();
 	const pagesCount = numberOfItems / pageSize;
 	const pages = Array.from({ length: pagesCount }, (_, i) => i + 1);
 
@@ -27,7 +32,7 @@ export default function Pagination({
 						<a
 							role="link"
 							className="relative block bg-transparent px-3 py-1.5 text-sm  transition-all duration-300 hover:bg-neutral-200 hover:text-black dark:text-black"
-							href={`/products/${page}`}
+							href={pathname.replace(/[0-9]/g, page.toString())}
 						>
 							{page}
 						</a>
