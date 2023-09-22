@@ -7,6 +7,12 @@ type ProductItemType = {
 	description: string;
 };
 
+type CollectionItemType = {
+	name: string;
+	slug: string;
+	image: { url: string };
+};
+
 type ProductResponseType = {
 	id: string;
 	title: string;
@@ -21,4 +27,4 @@ type ProductResponseType = {
 	longDescription: string;
 };
 
-export type { ProductItemType, ProductResponseType };
+export type { ProductItemType, ProductResponseType, CollectionItemType };

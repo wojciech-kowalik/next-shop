@@ -1,11 +1,12 @@
-export default function HomePage() {
+import { CollectionList } from "@/ui/organisms/CollectionList";
+import { getCollections } from "@api/collections";
+
+export default async function HomePage() {
+	const collections = await getCollections();
+
 	return (
 		<div className="text-center">
-			<h1 className="text-4xl font-bold">Strona główna</h1>
-			<p className="text-2xl">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-				voluptatum.
-			</p>
+			<CollectionList collections={collections} />
 		</div>
 	);
 }

@@ -1,14 +1,14 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Navigation from "./ui/organisms/Navigation";
-import Footer from "./ui/organisms/Footer";
+import { Merriweather_Sans } from "next/font/google";
+import Navigation from "@/ui/organisms/Navigation";
+import Footer from "@/ui/organisms/Footer";
 import Header from "@/ui/organisms/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Merriweather_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Products",
+	title: "Next shop",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
 				<Header>
 					<Navigation />
 				</Header>
-				<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-8 py-12 sm:px-6 lg:max-w-7xl">
+				<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-4 py-12 lg:max-w-7xl">
 					{children}
 				</section>
 				<Footer />

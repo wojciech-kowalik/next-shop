@@ -5,6 +5,7 @@ import {
 	ProductsGetListDocument,
 	type ProductGetByIdQuery,
 	ProductsGetByCategorySlugDocument,
+	ProductsGetByCollectionSlugDocument,
 } from "@gql/graphql";
 
 const productResponseToProductItem = (
@@ -62,5 +63,25 @@ export const getProductsByCategorySlug = async ({
 	return {
 		products: response.categories[0].products.map(productResponseToProductItem),
 		categoryName: response.categories[0].name,
+	};
+};
+
+export const getProductsByCollectionSlug = async ({
+	slug,
+}: {
+	slug: string;
+}) => {
+	const response = await graphqlFetch(ProductsGetByCollectionSlugDocument, {
+		slug,
+	});
+
+	return {
+		products: response.collections[0].products.map(
+			productResponseToProductItem,
+		),
+		collection: {
+			name: response.collections[0].name,
+			description: response.collections[0].description,
+		},
 	};
 };
