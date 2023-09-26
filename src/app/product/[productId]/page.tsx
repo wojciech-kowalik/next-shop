@@ -3,15 +3,8 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@api/products";
 import { formatMoney } from "@/utils";
-import { cookies } from "next/headers";
-import { graphqlFetch } from "@api/fetch";
-import {
-	CartAddItemDocument,
-	CartCreateDocument,
-	CartGetByIdDocument,
-	ProductGetByIdDocument,
-} from "@gql/graphql";
 import AddToCartButton from "@/ui/atoms/AddToCartButton";
+import { addProductToCart, getOrCreateCart } from "@api/cart";
 
 export async function generateStaticParams() {
 	const products = await getProducts({ take: 4, offset: 1 });
@@ -47,41 +40,6 @@ async function addProductToCartAction(formData: FormData) {
 	const cart = await getOrCreateCart();
 	const productId = formData.get("productId")?.toString();
 	await addProductToCart(cart.id, productId!);
-}
-
-async function getOrCreateCart() {
-	const cartId = cookies().get("cartId")?.value;
-	if (cartId) {
-		const { order: cart } = await graphqlFetch(CartGetByIdDocument, {
-			id: cartId,
-		});
-		if (cart) {
-			return cart;
-		}
-	}
-
-	const { createOrder: newCart } = await graphqlFetch(CartCreateDocument, {});
-	if (!newCart) {
-		throw new Error("Failed to create cart");
-	}
-
-	cookies().set("cartId", newCart.id);
-	return newCart;
-}
-
-async function addProductToCart(orderId: string, productId: string) {
-	const { product } = await graphqlFetch(ProductGetByIdDocument, {
-		id: productId,
-	});
-	if (!product) {
-		throw new Error(`Product with id ${productId} not found`);
-	}
-
-	await graphqlFetch(CartAddItemDocument, {
-		orderId,
-		productId,
-		total: product.price,
-	});
 }
 
 export default async function ProductPage({
