@@ -11,6 +11,7 @@ export const graphqlFetch = async <TResult, TVariables>(
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
 		},
 		body: JSON.stringify({
 			query,

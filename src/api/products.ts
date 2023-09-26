@@ -36,6 +36,7 @@ export const getProducts = async ({
 		take,
 		offset: offset - 1,
 	});
+
 	return response.products.map(productResponseToProductItem);
 };
 
