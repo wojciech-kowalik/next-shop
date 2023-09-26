@@ -6,7 +6,6 @@ import {
 	CartGetByIdDocument,
 	ProductGetByIdDocument,
 } from "@gql/graphql";
-import { get } from "http";
 
 export async function getOrCreateCart() {
 	const cart = await getCartByIdFromCookies();

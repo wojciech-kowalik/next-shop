@@ -1,6 +1,6 @@
+import { redirect } from "next/navigation";
 import { formatMoney } from "@/utils";
 import { getCartByIdFromCookies } from "@api/cart";
-import { redirect } from "next/navigation";
 
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
