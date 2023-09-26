@@ -10715,6 +10715,29 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type CartAddItemMutationVariables = Exact<{
+  orderId: Scalars['ID']['input'];
+  total: Scalars['Int']['input'];
+  productId: Scalars['ID']['input'];
+}>;
+
+
+export type CartAddItemMutation = { createOrderItem?: { id: string } | null };
+
+export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CartCreateMutation = { createOrder?: { id: string } | null };
+
+export type CartGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { order?: { id: string } | null };
+
+export type CartOrderFragment = { id: string };
+
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -10767,6 +10790,11 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CartOrderFragmentDoc = new TypedDocumentString(`
+    fragment CartOrder on Order {
+  id
+}
+    `, {"fragmentName":"CartOrder"}) as unknown as TypedDocumentString<CartOrderFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductListItem on Product {
   id
@@ -10781,6 +10809,33 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   price
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CartAddItemDocument = new TypedDocumentString(`
+    mutation CartAddItem($orderId: ID!, $total: Int!, $productId: ID!) {
+  createOrderItem(
+    data: {quantity: 1, total: $total, product: {connect: {id: $productId}}, order: {connect: {id: $orderId}}}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddItemMutation, CartAddItemMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate {
+  createOrder(data: {total: 0}) {
+    ...CartOrder
+  }
+}
+    fragment CartOrder on Order {
+  id
+}`) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($id: ID!) {
+  order(where: {id: $id}, stage: DRAFT) {
+    ...CartOrder
+  }
+}
+    fragment CartOrder on Order {
+  id
+}`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const CollectionsGetListDocument = new TypedDocumentString(`
     query CollectionsGetList {
   collections {
