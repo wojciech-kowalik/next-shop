@@ -1,5 +1,5 @@
 import { getProducts } from "@api/products";
-import { ProductList } from "./ProductList";
+import { ProductList } from "@/ui/organisms/ProductList";
 
 export default async function SimilarProduct() {
 	const products = await getProducts({
