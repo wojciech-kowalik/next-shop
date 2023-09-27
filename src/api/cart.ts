@@ -13,19 +13,23 @@ export async function getOrCreateCart() {
 		return cart;
 	}
 
-	const { createOrder: newCart } = await graphqlFetch(CartCreateDocument, {});
-	if (!newCart) {
+	return createCart();
+}
+
+export async function createCart() {
+	const { createOrder: cart } = await graphqlFetch(CartCreateDocument, {});
+	if (!cart) {
 		throw new Error("Failed to create cart");
 	}
 
-	cookies().set("cartId", newCart.id);
-	return newCart;
+	cookies().set("cartId", cart.id);
+	return cart;
 }
 
 export async function getCartByIdFromCookies() {
 	const cartId = cookies().get("cartId")?.value;
 	if (!cartId) {
-		throw new Error("Cart id not found");
+		return createCart();
 	}
 
 	const { order: cart } = await graphqlFetch(CartGetByIdDocument, {
