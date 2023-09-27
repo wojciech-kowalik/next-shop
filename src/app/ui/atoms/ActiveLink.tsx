@@ -28,7 +28,7 @@ export default function ActiveLink<T extends string>({
 	return (
 		<Link
 			role="link"
-			aria-current={isActive}
+			aria-current={isActive ? "page" : undefined}
 			href={href}
 			className={clsx(className, isActive && activeClassName)}
 		>
