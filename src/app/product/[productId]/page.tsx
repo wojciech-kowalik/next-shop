@@ -2,11 +2,11 @@ import { Suspense } from "react";
 import Image from "next/image";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+import AddToCartButton from "./AddToCartButton";
+import { addProductToCartAction } from "./actions";
 import { getProductById, getProducts } from "@api/products";
 import { formatMoney } from "@/utils";
 import SimilarProduct from "@/ui/organisms/SimilarProduct";
-import AddToCartButton from "./AddToCartButton";
-import { addProductToCartAction } from "./actions";
 
 export async function generateStaticParams() {
 	const products = await getProducts({ take: 4, offset: 1 });

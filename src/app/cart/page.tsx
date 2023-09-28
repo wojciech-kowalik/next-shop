@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
+import { ChangeQuantityButton } from "./ChangeQuantityButton";
 import { formatMoney } from "@/utils";
 import { getCartByIdFromCookies } from "@api/cart";
-import { ChangeQuantityButton } from "./ChangeQuantityButton";
 
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
