@@ -1,6 +1,22 @@
+import { type Metadata } from "next";
 import Pagination from "@/ui/molecules/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProductsByCategorySlug } from "@api/products";
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { slug: string };
+}): Promise<Metadata> => {
+	const data = await getProductsByCategorySlug({
+		slug: params.slug,
+		offset: 1,
+	});
+	if (!data) return {};
+	return {
+		title: data.categoryName,
+	};
+};
 
 export default async function CategoryPage({
 	params,
