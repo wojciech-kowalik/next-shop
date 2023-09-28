@@ -22,10 +22,10 @@ export const generateMetadata = async ({
 	const product = await getProductById(params.productId);
 	if (!product) return {};
 	return {
-		title: `Product ${product.name}`,
+		title: product.name,
 		description: product.description,
 		openGraph: {
-			title: `Product ${product.name}`,
+			title: product.name,
 			description: product.description,
 			images: [
 				{
