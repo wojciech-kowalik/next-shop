@@ -1,6 +1,6 @@
+import { type Metadata } from "next";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProductsByCollectionSlug } from "@api/products";
-import { type Metadata } from "next";
 
 export const generateMetadata = async ({
 	params,

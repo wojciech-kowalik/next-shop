@@ -1,5 +1,4 @@
 import "./globals.css";
-import type { Metadata } from "next";
 import { Merriweather_Sans } from "next/font/google";
 import Navigation from "@/ui/organisms/Navigation";
 import Footer from "@/ui/organisms/Footer";
