@@ -1,5 +1,23 @@
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProductsByCollectionSlug } from "@api/products";
+import { type Metadata } from "next";
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { slug: string };
+}): Promise<Metadata> => {
+	const data = await getProductsByCollectionSlug({ slug: params.slug });
+	if (!data) return {};
+	return {
+		title: data.collection.name,
+		description: data.collection.description,
+		openGraph: {
+			title: data.collection.name,
+			description: data.collection.description || "",
+		},
+	};
+};
 
 export default async function CollectionPage({
 	params,

@@ -29,7 +29,7 @@ export default async function CartPage() {
 							<tr key={item.product.id}>
 								<td>{item.product.name}</td>
 								<td>{item.quantity}</td>
-								<td>{formatMoney(item.product.price)}</td>
+								<td>{formatMoney(item.product.price / 100)}</td>
 							</tr>
 						);
 					})}

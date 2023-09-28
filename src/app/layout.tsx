@@ -8,10 +8,6 @@ import Actions from "@/ui/organisms/Actions";
 
 const inter = Merriweather_Sans({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-	title: "Next shop",
-};
-
 export default function RootLayout({
 	children,
 }: {
