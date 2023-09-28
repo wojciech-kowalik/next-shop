@@ -4,9 +4,9 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@api/products";
 import { formatMoney } from "@/utils";
-import AddToCartButton from "@/ui/atoms/AddToCartButton";
 import SimilarProduct from "@/ui/organisms/SimilarProduct";
-import { addProductToCart, getOrCreateCart } from "@api/cart";
+import AddToCartButton from "./AddToCartButton";
+import { addProductToCartAction } from "./actions";
 
 export async function generateStaticParams() {
 	const products = await getProducts({ take: 4, offset: 1 });
@@ -36,13 +36,6 @@ export const generateMetadata = async ({
 		},
 	};
 };
-
-async function addProductToCartAction(formData: FormData) {
-	"use server";
-	const cart = await getOrCreateCart();
-	const productId = formData.get("productId")?.toString();
-	await addProductToCart(cart.id, productId!);
-}
 
 export default async function ProductPage({
 	params,

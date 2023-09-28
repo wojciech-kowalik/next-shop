@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { formatMoney } from "@/utils";
 import { getCartByIdFromCookies } from "@api/cart";
+import { ChangeQuantityButton } from "./ChangeQuantityButton";
 
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
@@ -28,7 +29,12 @@ export default async function CartPage() {
 						return (
 							<tr key={item.product.id}>
 								<td>{item.product.name}</td>
-								<td>{item.quantity}</td>
+								<td>
+									<ChangeQuantityButton
+										itemId={item.id}
+										quantity={item.quantity}
+									/>
+								</td>
 								<td>{formatMoney(item.product.price / 100)}</td>
 							</tr>
 						);
