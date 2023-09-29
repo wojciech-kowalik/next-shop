@@ -1,12 +1,14 @@
 import { Suspense } from "react";
-import Image from "next/image";
 import { type Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+
 import AddToCartButton from "./AddToCartButton";
 import { addProductToCartAction } from "./actions";
-import { getProductById, getProducts } from "@api/products";
+
+import RelatedProductList from "@/ui/organisms/RelatedProductList";
 import { formatMoney } from "@/utils";
-import SimilarProduct from "@/ui/organisms/SimilarProduct";
+import { getProductById, getProducts } from "@api/products";
 
 export async function generateStaticParams() {
 	const products = await getProducts({ take: 4, offset: 1 });
@@ -86,7 +88,7 @@ export default async function ProductPage({
 				</div>
 			</form>
 			<Suspense fallback="Loading ...">
-				<SimilarProduct />
+				<RelatedProductList />
 			</Suspense>
 		</>
 	);
