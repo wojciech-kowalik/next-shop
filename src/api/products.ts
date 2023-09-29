@@ -6,6 +6,7 @@ import {
 	type ProductGetByIdQuery,
 	ProductsGetByCategorySlugDocument,
 	ProductsGetByCollectionSlugDocument,
+	ProductsSearchByQueryDocument,
 } from "@gql/graphql";
 
 const productResponseToProductItem = (
@@ -85,4 +86,12 @@ export const getProductsByCollectionSlug = async ({
 			description: response.collections[0].description,
 		},
 	};
+};
+
+export const searchProducts = async ({ query }: { query: string }) => {
+	const response = await graphqlFetch(ProductsSearchByQueryDocument, {
+		query,
+	});
+
+	return response.products.map(productResponseToProductItem);
 };
