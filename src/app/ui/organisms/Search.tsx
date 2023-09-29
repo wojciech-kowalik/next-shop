@@ -20,7 +20,6 @@ export default function Search() {
 	const handleChange = (
 		event: ChangeEvent<HTMLInputElement> | KeyboardEvent,
 	) => {
-		console.log(event);
 		const target = event.target as HTMLInputElement;
 		if (!target) return;
 		setValue(target.value || "");
