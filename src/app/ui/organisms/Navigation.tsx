@@ -1,6 +1,6 @@
 import ActiveLink from "@/ui/atoms/ActiveLink";
 
-export default function Navigation({}) {
+export default async function Navigation({}) {
 	return (
 		<nav className="scrolling-touch scroll-shadows -mx-2 flex overflow-x-scroll lg:mx-0 lg:h-16 lg:overflow-x-auto">
 			<div className="hidden flex-shrink-0 items-center lg:flex">
