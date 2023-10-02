@@ -33,17 +33,19 @@ export const getProducts = async ({
 	take?: number;
 	offset: number;
 }) => {
-	const response = await graphqlFetch(ProductsGetListDocument, {
-		take,
-		offset: offset - 1,
+	const response = await graphqlFetch({
+		query: ProductsGetListDocument,
+		variables: { take, offset: offset - 1 },
 	});
 
 	return response.products.map(productResponseToProductItem);
 };
 
 export const getProductById = async (id: ProductResponseType["id"]) => {
-	const response = await graphqlFetch(ProductGetByIdDocument, { id });
-
+	const response = await graphqlFetch({
+		query: ProductGetByIdDocument,
+		variables: { id },
+	});
 	return productResponseToProductItem(response.product);
 };
 
@@ -56,10 +58,9 @@ export const getProductsByCategorySlug = async ({
 	offset: number;
 	slug: string;
 }) => {
-	const response = await graphqlFetch(ProductsGetByCategorySlugDocument, {
-		slug,
-		take,
-		offset: offset - 1,
+	const response = await graphqlFetch({
+		query: ProductsGetByCategorySlugDocument,
+		variables: { slug, take, offset: offset - 1 },
 	});
 
 	return {
@@ -73,8 +74,9 @@ export const getProductsByCollectionSlug = async ({
 }: {
 	slug: string;
 }) => {
-	const response = await graphqlFetch(ProductsGetByCollectionSlugDocument, {
-		slug,
+	const response = await graphqlFetch({
+		query: ProductsGetByCollectionSlugDocument,
+		variables: { slug },
 	});
 
 	return {
@@ -89,8 +91,9 @@ export const getProductsByCollectionSlug = async ({
 };
 
 export const searchProducts = async ({ query }: { query: string }) => {
-	const response = await graphqlFetch(ProductsSearchByQueryDocument, {
-		query,
+	const response = await graphqlFetch({
+		query: ProductsSearchByQueryDocument,
+		variables: { query },
 	});
 
 	return response.products.map(productResponseToProductItem);

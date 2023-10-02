@@ -17,7 +17,12 @@ export async function getOrCreateCart() {
 }
 
 export async function createCart() {
-	const { createOrder: cart } = await graphqlFetch(CartCreateDocument, {});
+	const { createOrder: cart } = await graphqlFetch({
+		query: CartCreateDocument,
+		next: {
+			tags: ["cart"],
+		},
+	});
 	if (!cart) {
 		throw new Error("Failed to create cart");
 	}
@@ -32,8 +37,12 @@ export async function getCartByIdFromCookies() {
 		return createCart();
 	}
 
-	const { order: cart } = await graphqlFetch(CartGetByIdDocument, {
-		id: cartId,
+	const { order: cart } = await graphqlFetch({
+		query: CartGetByIdDocument,
+		variables: { id: cartId },
+		next: {
+			tags: ["cart"],
+		},
 	});
 	if (!cart) {
 		throw new Error("Cart not found");
@@ -43,16 +52,22 @@ export async function getCartByIdFromCookies() {
 }
 
 export async function addProductToCart(orderId: string, productId: string) {
-	const { product } = await graphqlFetch(ProductGetByIdDocument, {
-		id: productId,
+	const { product } = await graphqlFetch({
+		query: ProductGetByIdDocument,
+		variables: { id: productId },
+		next: {
+			tags: ["cart"],
+		},
 	});
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
 	}
 
-	await graphqlFetch(CartAddItemDocument, {
-		orderId,
-		productId,
-		total: product.price,
+	await graphqlFetch({
+		query: CartAddItemDocument,
+		variables: { orderId, productId, total: product.price },
+		next: {
+			tags: ["cart"],
+		},
 	});
 }
