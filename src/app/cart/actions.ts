@@ -7,7 +7,7 @@ import {
 	CartSetProductQuantityDocument,
 } from "@gql/graphql";
 
-export async function removeItemFromCart(itemId: string) {
+export async function removeItemFromCartAction(itemId: string) {
 	return graphqlFetch({
 		query: CartRemoveProductDocument,
 		variables: { itemId },
@@ -15,7 +15,10 @@ export async function removeItemFromCart(itemId: string) {
 	});
 }
 
-export async function changeItemQuantity(itemId: string, quantity: number) {
+export async function changeItemQuantityAction(
+	itemId: string,
+	quantity: number,
+) {
 	return graphqlFetch({
 		query: CartSetProductQuantityDocument,
 		variables: { itemId, quantity },
@@ -23,7 +26,7 @@ export async function changeItemQuantity(itemId: string, quantity: number) {
 	});
 }
 
-export async function paymentByStripe(_formData: FormData) {
+export async function paymentByStripeAction(_formData: FormData) {
 	if (!process.env.STRIPE_SECRET_KEY) {
 		throw new Error("STRIPE_SECRET_KEY is not defined");
 	}

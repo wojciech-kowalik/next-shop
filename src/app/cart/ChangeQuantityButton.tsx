@@ -1,6 +1,6 @@
 "use client";
 import { experimental_useOptimistic as useOptimistic } from "react";
-import { changeItemQuantity } from "./actions";
+import { changeItemQuantityAction } from "@/cart/actions";
 
 export function ChangeQuantityButton({
 	itemId,
@@ -22,7 +22,7 @@ export function ChangeQuantityButton({
 				type="submit"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
-					await changeItemQuantity(itemId, optimisticQuantity + 1);
+					await changeItemQuantityAction(itemId, optimisticQuantity + 1);
 				}}
 			>
 				+

@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { removeItemFromCart } from "./actions";
+import { removeItemFromCartAction } from "@/cart/actions";
 
 export default function RemoveButton({ itemId }: { itemId: string }) {
 	const [isPending, startTransition] = useTransition();
@@ -12,7 +12,7 @@ export default function RemoveButton({ itemId }: { itemId: string }) {
 			disabled={isPending}
 			onClick={() => {
 				startTransition(async () => {
-					await removeItemFromCart(itemId);
+					await removeItemFromCartAction(itemId);
 					router.refresh();
 				});
 			}}
