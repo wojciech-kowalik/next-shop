@@ -10727,16 +10727,16 @@ export type CartAddItemMutation = { createOrderItem?: { id: string } | null };
 export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartCreateMutation = { createOrder?: { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
+export type CartCreateMutation = { createOrder?: { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> } | null };
 
 export type CartGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type CartGetByIdQuery = { order?: { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> } | null };
+export type CartGetByIdQuery = { order?: { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> } | null };
 
-export type CartOrderFragment = { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number } | null }> };
+export type CartOrderFragment = { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> };
 
 export type CartRemoveProductMutationVariables = Exact<{
   itemId: Scalars['ID']['input'];
@@ -10822,6 +10822,10 @@ export const CartOrderFragmentDoc = new TypedDocumentString(`
       id
       name
       price
+      description
+      images {
+        url
+      }
     }
   }
 }
@@ -10864,6 +10868,10 @@ export const CartCreateDocument = new TypedDocumentString(`
       id
       name
       price
+      description
+      images {
+        url
+      }
     }
   }
 }`) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
@@ -10882,6 +10890,10 @@ export const CartGetByIdDocument = new TypedDocumentString(`
       id
       name
       price
+      description
+      images {
+        url
+      }
     }
   }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;

@@ -35,12 +35,13 @@ export async function getOrCreateCart() {
 export async function getCartByIdFromCookies() {
 	const cartId = cookies().get("cartId")?.value;
 	if (!cartId) {
-		return null;
+		return;
 	}
 
 	const { order: cart } = await graphqlFetch({
 		query: CartGetByIdDocument,
 		variables: { id: cartId },
+		cache: "no-store",
 		next: {
 			tags: ["cart"],
 		},
