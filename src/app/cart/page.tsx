@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ChangeQuantityButton } from "./ChangeQuantityButton";
 import RemoveButton from "./RemoveButton";
+import CheckoutButton from "./CheckoutButton";
 import { formatMoney } from "@/utils";
 import { getCartByIdFromCookies } from "@api/cart";
 
@@ -46,6 +48,14 @@ export default async function CartPage() {
 					})}
 				</tbody>
 			</table>
+			<div className="mt-10 grid grid-cols-2">
+				<div></div>
+				<CheckoutButton />
+			</div>
+
+			<div className="mt-4 text-center">
+				<Link href="/products">Continue shopping</Link>
+			</div>
 		</div>
 	);
 }

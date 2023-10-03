@@ -7,15 +7,6 @@ import {
 	ProductGetByIdDocument,
 } from "@gql/graphql";
 
-export async function getOrCreateCart() {
-	const cart = await getCartByIdFromCookies();
-	if (cart) {
-		return cart;
-	}
-
-	return createCart();
-}
-
 export async function createCart() {
 	const { createOrder: cart } = await graphqlFetch({
 		query: CartCreateDocument,
@@ -28,13 +19,23 @@ export async function createCart() {
 	}
 
 	cookies().set("cartId", cart.id);
+
 	return cart;
+}
+
+export async function getOrCreateCart() {
+	const cart = await getCartByIdFromCookies();
+	if (cart) {
+		return cart;
+	}
+
+	return createCart();
 }
 
 export async function getCartByIdFromCookies() {
 	const cartId = cookies().get("cartId")?.value;
 	if (!cartId) {
-		return createCart();
+		return null;
 	}
 
 	const { order: cart } = await graphqlFetch({
