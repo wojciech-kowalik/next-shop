@@ -1,8 +1,7 @@
 "use server";
 
-import { env } from "process";
 import Stripe from "stripe";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { graphqlFetch } from "@api/fetch";
 import {
