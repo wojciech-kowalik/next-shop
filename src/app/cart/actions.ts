@@ -45,6 +45,7 @@ export async function paymentByStripeAction(_formData: FormData) {
 	}
 
 	const session = await stripe.checkout.sessions.create({
+		payment_method_types: ["card"],
 		metadata: {
 			cartId: cart.id,
 		},
