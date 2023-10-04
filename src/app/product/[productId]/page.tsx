@@ -26,16 +26,6 @@ export const generateMetadata = async ({
 	return {
 		title: product.name.trim(),
 		description: product.description,
-		openGraph: {
-			title: product.name.trim(),
-			description: product.description,
-			images: [
-				{
-					url: product.coverImage.src,
-					alt: product.coverImage.alt,
-				},
-			],
-		},
 	};
 };
 
