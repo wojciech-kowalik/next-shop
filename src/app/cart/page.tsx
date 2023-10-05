@@ -16,6 +16,7 @@ export default async function CartPage() {
 	return (
 		<div>
 			<h1>Order #{cart.id} summary</h1>
+
 			<table>
 				<thead>
 					<tr>
