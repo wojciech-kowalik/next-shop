@@ -1,4 +1,7 @@
-import { ReviewCreateDocument } from "@gql/graphql";
+import {
+	ReviewCreateDocument,
+	ReviewGetByProductIdDocument,
+} from "@gql/graphql";
 import { graphqlFetch } from "@api/fetch";
 import { type FormValues } from "@/types";
 
@@ -16,3 +19,11 @@ export async function createReview(data: FormValues, productId: string) {
 
 	return review;
 }
+
+export const getReviewByProductId = async (id: string) => {
+	const response = await graphqlFetch({
+		query: ReviewGetByProductIdDocument,
+		variables: { id },
+	});
+	return response.reviews;
+};

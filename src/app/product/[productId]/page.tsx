@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import RelatedProductList from "@/ui/organisms/RelatedProductList";
 import ReviewForm from "@/ui/organisms/ReviewForm";
+import ReviewList from "@/ui/organisms/ReviewList";
 import AddToCartForm from "@/ui/organisms/AddToCartForm";
 import { formatMoney } from "@/utils";
 import { getProductById, getProducts } from "@api/products";
@@ -78,8 +79,15 @@ export default async function ProductPage({
 				<RelatedProductList />
 			</Suspense>
 
-			<div className="mt-4">
-				<ReviewForm productId={params.productId} />
+			<div className="bg-white p-4">
+				<div className="mx-auto max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-16">
+					<div className="lg:col-span-4">
+						<ReviewForm productId={params.productId} />
+					</div>
+					<div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
+						<ReviewList productId={params.productId} />
+					</div>
+				</div>
 			</div>
 		</>
 	);

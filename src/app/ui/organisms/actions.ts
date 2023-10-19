@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { createReview } from "@api/product";
+import { createReview } from "@api/review";
 import { addProductToCart, getOrCreateCart } from "@api/cart";
 import { type FormValues } from "@/types";
 
