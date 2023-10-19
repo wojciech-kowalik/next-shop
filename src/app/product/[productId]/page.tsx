@@ -8,13 +8,13 @@ import ReviewForm from "@/ui/organisms/ReviewForm";
 import ReviewList from "@/ui/organisms/ReviewList";
 import AddToCartForm from "@/ui/organisms/AddToCartForm";
 import { formatMoney } from "@/utils";
-import { getProductById, getProducts } from "@api/products";
+import { getProductById } from "@api/products";
 
-export async function generateStaticParams() {
-	const products = await getProducts({ take: 4, offset: 1 });
+// export async function generateStaticParams() {
+// 	const products = await getProducts({ take: 4, offset: 1 });
 
-	return products.map((product) => ({ productId: product?.id })).slice(0, 10);
-}
+// 	return products.map((product) => ({ productId: product?.id })).slice(0, 10);
+// }
 
 export const generateMetadata = async ({
 	params,
