@@ -7,6 +7,7 @@ type ProductItemType = {
 	price: number;
 	coverImage: { alt: string; src: string };
 	description: string;
+	avgRating?: number;
 };
 
 type CollectionItemType = {
