@@ -1,3 +1,5 @@
+import type { Path, UseFormRegister, FieldErrors } from "react-hook-form";
+
 type ProductItemType = {
 	id: string;
 	name: string;
@@ -27,4 +29,27 @@ type ProductResponseType = {
 	longDescription: string;
 };
 
-export type { ProductItemType, ProductResponseType, CollectionItemType };
+type FormValues = {
+	headline: string;
+	content: string;
+	name: string;
+	email: string;
+	rating: number;
+};
+
+type InputType = {
+	name: Path<FormValues>;
+	label: string;
+	register: UseFormRegister<FormValues>;
+	required: boolean;
+	errors: FieldErrors<FormValues>;
+	isEmail?: boolean;
+};
+
+export type {
+	ProductItemType,
+	ProductResponseType,
+	CollectionItemType,
+	InputType,
+	FormValues,
+};

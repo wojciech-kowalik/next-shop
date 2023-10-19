@@ -3,7 +3,7 @@ import { Merriweather_Sans } from "next/font/google";
 import Navigation from "@/ui/organisms/Navigation";
 import Footer from "@/ui/organisms/Footer";
 import Header from "@/ui/organisms/Header";
-import Actions from "@/ui/organisms/Actions";
+import ActionItems from "@/ui/organisms/ActionItems";
 
 const inter = Merriweather_Sans({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<Header>
 					<Navigation />
-					<Actions />
+					<ActionItems />
 				</Header>
 				<section className="sm:py-18 mx-auto flex w-full max-w-2xl flex-grow flex-col px-4 py-12 lg:max-w-7xl">
 					{children}
