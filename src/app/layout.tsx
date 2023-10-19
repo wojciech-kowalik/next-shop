@@ -1,4 +1,5 @@
 import "./globals.css";
+import "@smastrom/react-rating/style.css";
 import { Merriweather_Sans } from "next/font/google";
 import Navigation from "@/ui/organisms/Navigation";
 import Footer from "@/ui/organisms/Footer";

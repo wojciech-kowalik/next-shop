@@ -13,7 +13,10 @@ const productResponseToProductItem = (
 	product: ProductGetByIdQuery["product"],
 ): ProductItemType | null => {
 	if (!product) return null;
-	const sumRating = product.reviews.reduce((sum, li) => sum + li.rating, 0);
+	const sumRating = product.reviews.reduce(
+		(sum, review) => sum + review.rating,
+		0,
+	);
 	const avgRating = sumRating
 		? +(sumRating / product.reviews.length).toFixed(1)
 		: undefined;

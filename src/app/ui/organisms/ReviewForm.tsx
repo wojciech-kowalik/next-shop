@@ -45,7 +45,13 @@ export default function ReviewForm({ productId }: { productId: string }) {
 					/>
 				</div>
 				<div className="mb-6 w-full">
-					<Rating label="Rating" name="rating" control={control} required />
+					<Rating
+						label="Rating"
+						name="rating"
+						control={control}
+						errors={errors}
+						required
+					/>
 				</div>
 				<div className="mb-6">
 					<Input

@@ -1,6 +1,5 @@
-import "@smastrom/react-rating/style.css";
 import { Rating as RatingReact } from "@smastrom/react-rating";
-import { Controller, type Control } from "react-hook-form";
+import { Controller, type Control, type FieldErrors } from "react-hook-form";
 import Label from "@/ui/atoms/Label";
 import { type FormValues } from "@/types";
 
@@ -9,11 +8,13 @@ export default function Rating({
 	name,
 	control,
 	required,
+	errors,
 }: {
 	label: string;
 	name: keyof FormValues;
 	control: Control<FormValues>;
 	required?: boolean;
+	errors: FieldErrors<FormValues>;
 }) {
 	return (
 		<>
@@ -23,16 +24,20 @@ export default function Rating({
 			<Controller
 				name={name}
 				control={control}
-				rules={{ required }}
-				render={({ field }) => {
+				rules={{
+					validate: (rating) => +rating > 0,
+				}}
+				render={({ field: { onChange, onBlur, value } }) => {
 					return (
 						<>
 							<RatingReact
+								isRequired={required}
 								style={{ maxWidth: 100 }}
-								value={+field.value}
-								onChange={field.onChange}
+								value={+value}
+								onChange={onChange}
+								onBlur={onBlur}
 							/>
-							{!field.value && required && (
+							{errors.rating && (
 								<p className="mt-2 text-xs italic text-red-500">
 									Please choose rating
 								</p>
