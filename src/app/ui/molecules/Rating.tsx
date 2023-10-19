@@ -18,6 +18,8 @@ export default function Rating({
 	return (
 		<>
 			<Label>{label}</Label>
+			{/* for test purpose */}
+			<input type="hidden" name="rating" />
 			<Controller
 				name={name}
 				control={control}
