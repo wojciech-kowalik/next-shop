@@ -3,10 +3,10 @@ import { type Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import AddToCartButton from "./AddToCartButton";
 import RelatedProductList from "@/ui/organisms/RelatedProductList";
 import ReviewForm from "@/ui/organisms/ReviewForm";
 import ReviewList from "@/ui/organisms/ReviewList";
-import AddToCartForm from "@/ui/organisms/AddToCartForm";
 import { formatMoney } from "@/utils";
 import { getProductById } from "@api/products";
 
@@ -15,6 +15,8 @@ import { getProductById } from "@api/products";
 
 // 	return products.map((product) => ({ productId: product?.id })).slice(0, 10);
 // }
+
+export const revalidate = 3600;
 
 export const generateMetadata = async ({
 	params,
@@ -70,7 +72,7 @@ export default async function ProductPage({
 						</p>
 					</div>
 					<div className="mt-8">
-						<AddToCartForm productId={params.productId} />
+						<AddToCartButton productId={product.id} />
 					</div>
 				</div>
 			</div>
@@ -82,10 +84,14 @@ export default async function ProductPage({
 			<div className="bg-white p-4">
 				<div className="mx-auto max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-16">
 					<div className="lg:col-span-4">
-						<ReviewForm productId={params.productId} />
+						<Suspense fallback="Loading ...">
+							<ReviewForm productId={params.productId} />
+						</Suspense>
 					</div>
 					<div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
-						<ReviewList productId={params.productId} />
+						<Suspense fallback="Loading ...">
+							<ReviewList productId={params.productId} />
+						</Suspense>
 					</div>
 				</div>
 			</div>

@@ -18,8 +18,10 @@ export async function removeItemFromCartAction(itemId: string) {
 export async function changeItemQuantityAction(
 	itemId: string,
 	quantity: number,
+	price: number,
 ) {
-	await changeItemQuantity(itemId, quantity);
+	const total = price * quantity;
+	await changeItemQuantity(itemId, quantity, total);
 	revalidateTag("cart");
 }
 

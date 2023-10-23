@@ -45,9 +45,6 @@ export const getProducts = async ({
 	const response = await graphqlFetch({
 		query: ProductsGetListDocument,
 		variables: { take, offset: offset - 1 },
-		next: {
-			revalidate: 30,
-		},
 	});
 
 	return response.products.map(productResponseToProductItem);

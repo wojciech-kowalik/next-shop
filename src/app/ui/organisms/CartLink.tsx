@@ -2,9 +2,11 @@ import Link from "next/link";
 import { ShoppingCartIcon } from "lucide-react";
 import { getCartByIdFromCookies } from "@api/cart";
 
-export default async function Cart() {
+export default async function CartLink() {
 	const cart = await getCartByIdFromCookies();
-	const quantity = cart?.orderItems.length || 0;
+
+	const quantity =
+		cart?.orderItems.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
 	return (
 		<Link

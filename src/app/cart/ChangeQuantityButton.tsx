@@ -6,6 +6,7 @@ import { changeItemQuantityAction } from "@/cart/actions";
 interface ChangeQuantityButtonProps extends ComponentPropsWithoutRef<"button"> {
 	itemId: string;
 	quantity: number;
+	price: number;
 	"data-testid": string;
 	children: ReactNode;
 }
@@ -13,6 +14,7 @@ interface ChangeQuantityButtonProps extends ComponentPropsWithoutRef<"button"> {
 export default function ChangeQuantityButton({
 	itemId,
 	quantity,
+	price,
 	children,
 	...rest
 }: ChangeQuantityButtonProps) {
@@ -21,7 +23,8 @@ export default function ChangeQuantityButton({
 			data-testid={rest["data-testid"]}
 			className="h-6 w-6 border"
 			onClick={async () => {
-				if (quantity >= 1) await changeItemQuantityAction(itemId, quantity);
+				if (quantity >= 1)
+					await changeItemQuantityAction(itemId, quantity, price);
 			}}
 		>
 			{children}

@@ -4,8 +4,8 @@ import {
 	CartAddItemDocument,
 	CartCreateDocument,
 	CartGetByIdDocument,
-	CartRemoveProductDocument,
-	CartSetProductQuantityDocument,
+	CartRemoveItemDocument,
+	CartUpdateItemDocument,
 	ProductGetByIdDocument,
 } from "@gql/graphql";
 
@@ -34,6 +34,43 @@ export async function getOrCreateCart() {
 	return createCart();
 }
 
+export async function updateCartItemOrAddToCart(
+	orderId: string,
+	productId: string,
+) {
+	const cart = await graphqlFetch({
+		query: CartGetByIdDocument,
+		variables: { id: orderId },
+	});
+
+	if (!cart) {
+		throw new Error(`Cart with id ${orderId} not found`);
+	}
+
+	const items = cart.order?.orderItems;
+
+	if (items) {
+		const orderItem = cart.order?.orderItems.find(
+			(item) => item?.product?.id === productId,
+		);
+
+		if (orderItem) {
+			const newQuantity = orderItem.quantity + 1;
+			await graphqlFetch({
+				query: CartUpdateItemDocument,
+				variables: {
+					productId: orderItem.id,
+					quantity: newQuantity,
+					total: orderItem.product ? orderItem.product.price * newQuantity : 0,
+				},
+			});
+			return;
+		}
+	}
+
+	await addProductToCart(orderId, productId);
+}
+
 export async function getCartByIdFromCookies() {
 	const cartId = cookies().get("cartId")?.value;
 	if (!cartId) {
@@ -51,8 +88,6 @@ export async function getCartByIdFromCookies() {
 	if (!cart) {
 		throw new Error("Cart not found");
 	}
-
-	console.log("cart", cart);
 
 	return cart;
 }
@@ -78,17 +113,21 @@ export async function addProductToCart(orderId: string, productId: string) {
 	});
 }
 
-export async function changeItemQuantity(itemId: string, quantity: number) {
+export async function changeItemQuantity(
+	itemId: string,
+	quantity: number,
+	total: number,
+) {
 	await graphqlFetch({
-		query: CartSetProductQuantityDocument,
-		variables: { itemId, quantity },
+		query: CartUpdateItemDocument,
+		variables: { productId: itemId, quantity, total },
 		next: { tags: ["cart"] },
 	});
 }
 
 export async function removeItemFromCart(itemId: string) {
 	return graphqlFetch({
-		query: CartRemoveProductDocument,
+		query: CartRemoveItemDocument,
 		variables: { itemId },
 		next: { tags: ["cart"] },
 	});

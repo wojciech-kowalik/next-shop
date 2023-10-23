@@ -10,9 +10,13 @@ import { getCartByIdFromCookies } from "@api/cart";
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
 
-	if (cart?.orderItems.length === 0) {
+	if (cart && cart.orderItems.length === 0) {
 		redirect("/");
 	}
+
+	const total = cart
+		? cart.orderItems.reduce((acc, item) => acc + item.total, 0)
+		: 0;
 
 	return (
 		<>
@@ -60,6 +64,7 @@ export default async function CartPage() {
 														<ChangeQuantityButton
 															data-testid="decrement"
 															itemId={item.id}
+															price={item.product.price}
 															quantity={item.quantity - 1}
 														>
 															-
@@ -73,6 +78,7 @@ export default async function CartPage() {
 														<ChangeQuantityButton
 															data-testid="increment"
 															itemId={item.id}
+															price={item.product.price}
 															quantity={item.quantity + 1}
 														>
 															+
@@ -99,7 +105,7 @@ export default async function CartPage() {
 										</p>
 									</div>
 									<div className=" small-caps font-medium text-slate-900">
-										{cart && formatMoney(cart.total / 100)}
+										{formatMoney(total / 100)}
 									</div>
 								</div>
 							</div>
@@ -118,50 +124,6 @@ export default async function CartPage() {
 						</div>
 					</div>
 				</div>
-			</section>
-			<section className="mx-auto w-full max-w-7xl p-8">
-				{/* <h1>Order #{cart.id} summary</h1>
-
-			<table>
-				<thead>
-					<tr>
-						<th>Product</th>
-						<th>Quantity</th>
-						<th>Price</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{cart.orderItems.map((item) => {
-						if (!item.product) {
-							return null;
-						}
-						return (
-							<tr key={item.product.id}>
-								<td>{item.product.name}</td>
-								<td>
-									<ChangeQuantityButton
-										itemId={item.id}
-										quantity={item.quantity}
-									/>
-								</td>
-								<td>{formatMoney(item.product.price / 100)}</td>
-								<td>
-									<RemoveButton itemId={item.id} />
-								</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-			<div classNameName="mt-10 grid grid-cols-2">
-				<div></div>
-				<CheckoutButton />
-			</div>
-
-			<div classNameName="mt-4 text-center">
-				<Link href="/products">Continue shopping</Link>
-			</div> */}
 			</section>
 		</>
 	);

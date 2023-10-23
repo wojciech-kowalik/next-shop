@@ -1,0 +1,8 @@
+mutation CartUpdateItem($productId: ID!, $total: Int!, $quantity: Int!) {
+	updateOrderItem(
+		data: { quantity: $quantity, total: $total }
+		where: { id: $productId }
+	) {
+		id
+	}
+}

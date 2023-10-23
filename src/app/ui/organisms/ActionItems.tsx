@@ -1,4 +1,4 @@
-import Cart from "./Cart";
+import CartLink from "@/ui/organisms/CartLink";
 import Search from "@/ui/organisms/Search";
 
 export default function ActionItems({}) {
@@ -8,7 +8,7 @@ export default function ActionItems({}) {
 				<Search />
 			</div>
 			<div className="ml-auto h-full lg:ml-4">
-				<Cart />
+				<CartLink />
 			</div>
 		</div>
 	);
