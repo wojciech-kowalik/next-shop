@@ -1,7 +1,9 @@
 fragment CartOrder on Order {
 	id
+	total
 	orderItems {
 		id
+		total
 		quantity
 		product {
 			id
@@ -10,6 +12,10 @@ fragment CartOrder on Order {
 			description
 			images {
 				url
+			}
+			categories(first: 1) {
+				id
+				name
 			}
 		}
 	}

@@ -10774,16 +10774,16 @@ export type CartAddItemMutation = { createOrderItem?: { id: string } | null };
 export type CartCreateMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartCreateMutation = { createOrder?: { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> } | null };
+export type CartCreateMutation = { createOrder?: { id: string, total: number, orderItems: Array<{ id: string, total: number, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null }> } | null };
 
 export type CartGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type CartGetByIdQuery = { order?: { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> } | null };
+export type CartGetByIdQuery = { order?: { id: string, total: number, orderItems: Array<{ id: string, total: number, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null }> } | null };
 
-export type CartOrderFragment = { id: string, orderItems: Array<{ id: string, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }> } | null }> };
+export type CartOrderFragment = { id: string, total: number, orderItems: Array<{ id: string, total: number, quantity: number, product?: { id: string, name: string, price: number, description: string, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } | null }> };
 
 export type CartRemoveProductMutationVariables = Exact<{
   itemId: Scalars['ID']['input'];
@@ -10883,8 +10883,10 @@ export class TypedDocumentString<TResult, TVariables>
 export const CartOrderFragmentDoc = new TypedDocumentString(`
     fragment CartOrder on Order {
   id
+  total
   orderItems {
     id
+    total
     quantity
     product {
       id
@@ -10893,6 +10895,10 @@ export const CartOrderFragmentDoc = new TypedDocumentString(`
       description
       images {
         url
+      }
+      categories(first: 1) {
+        id
+        name
       }
     }
   }
@@ -10941,8 +10947,10 @@ export const CartCreateDocument = new TypedDocumentString(`
 }
     fragment CartOrder on Order {
   id
+  total
   orderItems {
     id
+    total
     quantity
     product {
       id
@@ -10951,6 +10959,10 @@ export const CartCreateDocument = new TypedDocumentString(`
       description
       images {
         url
+      }
+      categories(first: 1) {
+        id
+        name
       }
     }
   }
@@ -10963,8 +10975,10 @@ export const CartGetByIdDocument = new TypedDocumentString(`
 }
     fragment CartOrder on Order {
   id
+  total
   orderItems {
     id
+    total
     quantity
     product {
       id
@@ -10973,6 +10987,10 @@ export const CartGetByIdDocument = new TypedDocumentString(`
       description
       images {
         url
+      }
+      categories(first: 1) {
+        id
+        name
       }
     }
   }

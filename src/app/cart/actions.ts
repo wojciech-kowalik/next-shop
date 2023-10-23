@@ -1,32 +1,26 @@
 "use server";
 
 import Stripe from "stripe";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { graphqlFetch } from "@api/fetch";
 import {
-	CartRemoveProductDocument,
-	CartSetProductQuantityDocument,
-} from "@gql/graphql";
-import { getCartByIdFromCookies } from "@api/cart";
+	getCartByIdFromCookies,
+	changeItemQuantity,
+	removeItemFromCart,
+} from "@api/cart";
 
 export async function removeItemFromCartAction(itemId: string) {
-	return graphqlFetch({
-		query: CartRemoveProductDocument,
-		variables: { itemId },
-		next: { tags: ["cart"] },
-	});
+	await removeItemFromCart(itemId);
+	revalidateTag("cart");
 }
 
 export async function changeItemQuantityAction(
 	itemId: string,
 	quantity: number,
 ) {
-	return graphqlFetch({
-		query: CartSetProductQuantityDocument,
-		variables: { itemId, quantity },
-		next: { tags: ["cart"] },
-	});
+	await changeItemQuantity(itemId, quantity);
+	revalidateTag("cart");
 }
 
 export async function paymentByStripeAction(_formData: FormData) {

@@ -4,6 +4,8 @@ import {
 	CartAddItemDocument,
 	CartCreateDocument,
 	CartGetByIdDocument,
+	CartRemoveProductDocument,
+	CartSetProductQuantityDocument,
 	ProductGetByIdDocument,
 } from "@gql/graphql";
 
@@ -50,6 +52,8 @@ export async function getCartByIdFromCookies() {
 		throw new Error("Cart not found");
 	}
 
+	console.log("cart", cart);
+
 	return cart;
 }
 
@@ -71,5 +75,21 @@ export async function addProductToCart(orderId: string, productId: string) {
 		next: {
 			tags: ["cart"],
 		},
+	});
+}
+
+export async function changeItemQuantity(itemId: string, quantity: number) {
+	await graphqlFetch({
+		query: CartSetProductQuantityDocument,
+		variables: { itemId, quantity },
+		next: { tags: ["cart"] },
+	});
+}
+
+export async function removeItemFromCart(itemId: string) {
+	return graphqlFetch({
+		query: CartRemoveProductDocument,
+		variables: { itemId },
+		next: { tags: ["cart"] },
 	});
 }
