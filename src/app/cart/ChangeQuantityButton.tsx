@@ -1,6 +1,10 @@
 "use client";
 
-import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import {
+	useTransition,
+	type ComponentPropsWithoutRef,
+	type ReactNode,
+} from "react";
 import { changeItemQuantityAction } from "@/cart/actions";
 
 interface ChangeQuantityButtonProps extends ComponentPropsWithoutRef<"button"> {
@@ -18,14 +22,19 @@ export default function ChangeQuantityButton({
 	children,
 	...rest
 }: ChangeQuantityButtonProps) {
+	const [isPending, startTransition] = useTransition();
+
 	return (
 		<button
 			data-testid={rest["data-testid"]}
-			className="h-6 w-6 border"
-			onClick={async () => {
-				if (quantity >= 1)
-					await changeItemQuantityAction(itemId, quantity, price);
-			}}
+			className="h-6 w-6 cursor-pointer border disabled:cursor-wait disabled:text-slate-400 disabled:opacity-50"
+			disabled={isPending}
+			onClick={() =>
+				startTransition(async () => {
+					if (quantity >= 1)
+						await changeItemQuantityAction(itemId, quantity, price);
+				})
+			}
 		>
 			{children}
 		</button>

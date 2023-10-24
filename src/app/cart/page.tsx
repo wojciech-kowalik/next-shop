@@ -110,8 +110,7 @@ export default async function CartPage() {
 								</div>
 							</div>
 						</div>
-						<div className="mt-10 grid grid-cols-2">
-							<div></div>
+						<div className="mt-10 ">
 							<CheckoutButton />
 						</div>
 						<div className="mt-4 text-center ">
