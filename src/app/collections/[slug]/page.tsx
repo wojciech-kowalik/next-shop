@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProductsByCollectionSlug } from "@api/products";
+import SectionHeader from "@/ui/molecules/SectionHeader";
 
 export const generateMetadata = async ({
 	params,
@@ -28,16 +29,11 @@ export default async function CollectionPage({
 
 	return (
 		<>
-			<div className="bg-slate-50">
-				<div className="mx-auto max-w-7xl px-8 py-12">
-					<h1 className="text-3xl font-bold tracking-tight text-slate-900">
-						{data.collection.name}
-					</h1>
-					<p className="mt-4 max-w-2xl text-base text-slate-700">
-						{data.collection.description}
-					</p>
-				</div>
-			</div>
+			<SectionHeader name={data.collection.name}>
+				<p className="mt-4 max-w-2xl text-base text-slate-700">
+					{data.collection.description}
+				</p>
+			</SectionHeader>
 			<ProductList products={data.products} />
 		</>
 	);

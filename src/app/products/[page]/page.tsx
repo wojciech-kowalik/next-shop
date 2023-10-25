@@ -14,11 +14,13 @@ export default async function ProductsPage({
 
 	return (
 		<>
-			<div className="bg-gray-100">
+			<div className="bg-slate-50">
 				<div className="mx-auto max-w-7xl px-8">
 					<div className="mx-auto py-8">
 						<div className="flex flex-row items-center justify-between">
-							<h2>All products</h2>
+							<h1 className="text-gray-70 text-2xl font-semibold tracking-tight">
+								All products
+							</h1>
 
 							<select className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
 								<option selected>Choose a country</option>
@@ -31,6 +33,7 @@ export default async function ProductsPage({
 					</div>
 				</div>
 			</div>
+
 			<ProductList products={products} />
 			<Pagination
 				numberOfItems={count}

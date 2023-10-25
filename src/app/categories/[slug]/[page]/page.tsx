@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import Pagination from "@/ui/molecules/Pagination";
+import SectionHeader from "@/ui/molecules/SectionHeader";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProductsByCategorySlug } from "@api/products";
 
@@ -34,13 +35,7 @@ export default async function CategoryPage({
 
 	return (
 		<>
-			<div className="bg-gray-100">
-				<div className="mx-auto max-w-7xl px-8">
-					<div className="mx-auto py-8">
-						<h2 className="text-bold">{products.categoryName}</h2>
-					</div>
-				</div>
-			</div>
+			<SectionHeader name={products.categoryName} />
 			<ProductList products={products.products} />
 			<Pagination
 				numberOfItems={count}
