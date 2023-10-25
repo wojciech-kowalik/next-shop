@@ -7,6 +7,7 @@ import {
 	ProductsGetByCategorySlugDocument,
 	ProductsGetByCollectionSlugDocument,
 	ProductsSearchByQueryDocument,
+	type ProductOrderByInput,
 } from "@gql/graphql";
 
 const productResponseToProductItem = (
@@ -37,14 +38,16 @@ const productResponseToProductItem = (
 
 export const getProducts = async ({
 	take = 8,
+	sort = "name_ASC",
 	offset,
 }: {
 	take?: number;
+	sort?: ProductOrderByInput;
 	offset: number;
 }) => {
 	const response = await graphqlFetch({
 		query: ProductsGetListDocument,
-		variables: { take, offset: offset - 1 },
+		variables: { take, offset: offset - 1, sort },
 	});
 
 	return response.products.map(productResponseToProductItem);

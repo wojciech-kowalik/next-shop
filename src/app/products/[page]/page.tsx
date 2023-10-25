@@ -1,16 +1,24 @@
+import { type ProductOrderByInput } from "@gql/graphql";
+import SortFilter from "@/ui/atoms/SortFilter";
 import Pagination from "@/ui/molecules/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@api/products";
 
 export default async function ProductsPage({
 	params,
+	searchParams,
 }: {
 	params: { page?: number };
+	searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-	const pageSize = 8;
+	const pageSize = 4;
 	const currentPage = params.page || 1;
-	const products = await getProducts({ take: pageSize, offset: +currentPage });
 	const count = 20;
+	const products = await getProducts({
+		take: pageSize,
+		offset: +currentPage * pageSize,
+		sort: searchParams?.sort as ProductOrderByInput,
+	});
 
 	return (
 		<>
@@ -22,13 +30,7 @@ export default async function ProductsPage({
 								All products
 							</h1>
 
-							<select className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
-								<option selected>Choose a country</option>
-								<option value="US">United States</option>
-								<option value="CA">Canada</option>
-								<option value="FR">France</option>
-								<option value="DE">Germany</option>
-							</select>
+							<SortFilter page={currentPage} />
 						</div>
 					</div>
 				</div>

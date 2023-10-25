@@ -10834,6 +10834,7 @@ export type ProductsGetByCollectionSlugQuery = { collections: Array<{ name: stri
 export type ProductsGetListQueryVariables = Exact<{
   take: Scalars['Int']['input'];
   offset: Scalars['Int']['input'];
+  sort: ProductOrderByInput;
 }>;
 
 
@@ -11095,8 +11096,8 @@ export const ProductsGetByCollectionSlugDocument = new TypedDocumentString(`
   }
 }`) as unknown as TypedDocumentString<ProductsGetByCollectionSlugQuery, ProductsGetByCollectionSlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($take: Int!, $offset: Int!) {
-  products(first: $take, skip: $offset) {
+    query ProductsGetList($take: Int!, $offset: Int!, $sort: ProductOrderByInput!) {
+  products(first: $take, skip: $offset, orderBy: $sort) {
     ...ProductListItem
   }
 }
