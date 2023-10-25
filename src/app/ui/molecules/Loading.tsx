@@ -3,7 +3,7 @@ export default function Loading() {
 		<div
 			aria-busy="true"
 			role="status"
-			className="flex h-screen items-center justify-center"
+			className="mt-20 flex h-screen justify-center"
 		>
 			<svg
 				aria-hidden="true"
