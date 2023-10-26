@@ -2,7 +2,7 @@ import { getProducts } from "@api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 
 export default async function RelatedProductList() {
-	const products = await getProducts({
+	const { products } = await getProducts({
 		page: 1,
 	});
 
