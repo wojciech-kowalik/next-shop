@@ -5,7 +5,11 @@ import { ProductList } from "@/ui/organisms/ProductList";
 
 export default async function HomePage() {
 	const collections = await getCollections();
-	const products = await getProducts({ take: 4, offset: 1 });
+	const { products } = await getProducts({
+		take: 4,
+		page: 1,
+		sort: "price_DESC",
+	});
 
 	return (
 		<>

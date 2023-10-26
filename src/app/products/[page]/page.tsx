@@ -13,10 +13,9 @@ export default async function ProductsPage({
 }) {
 	const pageSize = 4;
 	const currentPage = params.page || 1;
-	const count = 20;
-	const products = await getProducts({
+	const { products, totalCount } = await getProducts({
 		take: pageSize,
-		offset: +currentPage * pageSize,
+		page: currentPage,
 		sort: searchParams?.sort as ProductOrderByInput,
 	});
 
@@ -38,7 +37,7 @@ export default async function ProductsPage({
 
 			<ProductList products={products} />
 			<Pagination
-				numberOfItems={count}
+				numberOfItems={totalCount}
 				currentPage={+currentPage}
 				pageSize={pageSize}
 			/>

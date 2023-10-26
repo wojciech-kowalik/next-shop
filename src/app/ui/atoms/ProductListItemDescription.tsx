@@ -15,7 +15,10 @@ export default function ProductListItemDescription({
 				<div>
 					<h3 className="text-sm font-semibold text-gray-700">{name}</h3>
 				</div>
-				<p className="text-sm font-medium text-gray-900">
+				<p
+					data-testid="product-price"
+					className="text-sm font-medium text-gray-900"
+				>
 					<span className="sr-only">Price: </span> {formatMoney(price / 100)}
 				</p>
 			</div>
@@ -25,7 +28,12 @@ export default function ProductListItemDescription({
 					<div className="flex flex-row items-center gap-2 text-sm">
 						<div>{avgRating} / 5</div>
 						<div>
-							<Rating style={{ maxWidth: 100 }} value={avgRating} readOnly />
+							<Rating
+								data-testid="product-rating"
+								style={{ maxWidth: 100 }}
+								value={avgRating}
+								readOnly
+							/>
 						</div>
 					</div>
 				)}

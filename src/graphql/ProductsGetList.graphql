@@ -1,4 +1,9 @@
 query ProductsGetList($take: Int!, $offset: Int!, $sort: ProductOrderByInput!) {
+	productsConnection {
+		pageInfo {
+			pageSize
+		}
+	}
 	products(first: $take, skip: $offset, orderBy: $sort) {
 		...ProductListItem
 	}

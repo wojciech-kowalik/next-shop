@@ -3,7 +3,7 @@
 import { useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function SortFilter({ page = 1 }: { page?: number }) {
+export default function SortFilter({ page }: { page?: number }) {
 	const router = useRouter();
 	const searchParams = useSearchParams()!;
 
@@ -25,7 +25,7 @@ export default function SortFilter({ page = 1 }: { page?: number }) {
 				);
 			}}
 			value={searchParams.get("sort") || "name_ASC"}
-			className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+			className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus-visible:border-gray-300"
 		>
 			<option value="name_ASC">Name (A-Z)</option>
 			<option value="name_DESC">Name (Z-A)</option>

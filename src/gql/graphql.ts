@@ -10838,7 +10838,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }>, reviews: Array<{ rating: number }> }> };
+export type ProductsGetListQuery = { productsConnection: { pageInfo: { pageSize?: number | null } }, products: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }>, reviews: Array<{ rating: number }> }> };
 
 export type ProductsSearchByQueryQueryVariables = Exact<{
   query: Scalars['String']['input'];
@@ -11097,6 +11097,11 @@ export const ProductsGetByCollectionSlugDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<ProductsGetByCollectionSlugQuery, ProductsGetByCollectionSlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($take: Int!, $offset: Int!, $sort: ProductOrderByInput!) {
+  productsConnection {
+    pageInfo {
+      pageSize
+    }
+  }
   products(first: $take, skip: $offset, orderBy: $sort) {
     ...ProductListItem
   }

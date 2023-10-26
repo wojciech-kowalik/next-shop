@@ -3,8 +3,7 @@ import { ProductList } from "@/ui/organisms/ProductList";
 
 export default async function RelatedProductList() {
 	const products = await getProducts({
-		take: 4,
-		offset: 1,
+		page: 1,
 	});
 
 	return (

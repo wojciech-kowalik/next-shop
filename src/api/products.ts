@@ -37,20 +37,27 @@ const productResponseToProductItem = (
 };
 
 export const getProducts = async ({
-	take = 8,
+	take = 4,
 	sort = "name_ASC",
-	offset,
+	page,
 }: {
 	take?: number;
 	sort?: ProductOrderByInput;
-	offset: number;
+	page: number;
 }) => {
+	const offset = (page - 1) * take;
+
 	const response = await graphqlFetch({
 		query: ProductsGetListDocument,
-		variables: { take, offset: offset - 1, sort },
+		variables: { take, offset, sort },
 	});
 
-	return response.products.map(productResponseToProductItem);
+	const products = response.products.map(productResponseToProductItem);
+
+	return {
+		products,
+		totalCount: response.productsConnection.pageInfo.pageSize ?? 0,
+	};
 };
 
 export const getProductById = async (id: ProductResponseType["id"]) => {
