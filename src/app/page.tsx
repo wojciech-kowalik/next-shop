@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CollectionList } from "@/ui/organisms/CollectionList";
 import { getCollections } from "@api/collections";
 import { getProducts } from "@api/products";
@@ -13,6 +14,15 @@ export default async function HomePage() {
 
 	return (
 		<>
+			<div className="mt-2 flex justify-center">
+				<Image
+					priority
+					src="/images/logo.svg"
+					height={220}
+					width={220}
+					alt=""
+				/>
+			</div>
 			<div className="text-center">
 				<CollectionList collections={collections} />
 			</div>

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { type ComponentType } from "react";
+import SectionHeader from "@/ui/molecules/SectionHeader";
 
 export default async function StaticPage({
 	params,
@@ -11,9 +12,16 @@ export default async function StaticPage({
 		() => notFound(),
 	);
 
+	const name =
+		params.filename.charAt(0).toUpperCase() + params.filename.slice(1);
+
 	return (
-		<article className="prose">
-			<Content />
-		</article>
+		<>
+			<SectionHeader name={name} />
+
+			<article className="prose prose-sm mt-4 w-full max-w-none">
+				<Content />
+			</article>
+		</>
 	);
 }
