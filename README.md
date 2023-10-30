@@ -10,7 +10,7 @@ The online shop written in Next 13
 
 ## Tech Stack
 
-Next, Hygraph, Stripe, Tailwind, Typescript, MDX, react-hook-form, pnpm, graphql-codegen
+Next, Hygraph, Stripe, Clerk, Tailwind, Typescript, MDX, react-hook-form, pnpm, graphql-codegen
 
 ## Run Locally
 
