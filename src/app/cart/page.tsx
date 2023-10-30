@@ -21,9 +21,9 @@ export default async function CartPage() {
 	return (
 		<>
 			<section className="mx-auto w-full max-w-7xl p-4">
-				<div className="">
-					<h1 className="text-3xl font-bold tracking-tight text-slate-900">
-						Your Shopping Cart
+				<div>
+					<h1 className="mb-4 text-2xl font-bold tracking-tight text-slate-900">
+						Your shopping cart
 					</h1>
 
 					<h2 className="sr-only">Products in your shopping cart</h2>

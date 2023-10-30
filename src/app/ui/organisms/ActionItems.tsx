@@ -1,5 +1,6 @@
 import CartLink from "@/ui/organisms/CartLink";
 import Search from "@/ui/organisms/Search";
+import HeaderLink from "@/ui/atoms/HeaderLink";
 
 export default function ActionItems({}) {
 	return (
@@ -7,8 +8,9 @@ export default function ActionItems({}) {
 			<div className="w-full max-w-lg lg:max-w-xs">
 				<Search />
 			</div>
-			<div className="ml-auto h-full lg:ml-4">
+			<div className="ml-auto flex h-full lg:ml-4">
 				<CartLink />
+				<HeaderLink href={{ pathname: "/sign-in" }}>Sign in</HeaderLink>
 			</div>
 		</div>
 	);

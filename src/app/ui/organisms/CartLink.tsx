@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ShoppingCartIcon } from "lucide-react";
 import { getCartByIdFromCookies } from "@api/cart";
+import HeaderLink from "@/ui/atoms/HeaderLink";
 
 export default async function CartLink() {
 	const cart = await getCartByIdFromCookies();
@@ -9,14 +9,11 @@ export default async function CartLink() {
 		cart?.orderItems.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
 	return (
-		<Link
-			className="flex h-full w-16 items-center justify-center border-b-2 border-transparent px-2 text-center text-sm font-medium text-slate-500 hover:border-gray-300 hover:text-slate-700"
-			href="/cart"
-		>
+		<HeaderLink href={{ pathname: "/cart" }}>
 			<ShoppingCartIcon />{" "}
 			<div className="w-4">
 				<span className="ml-2 text-sm font-medium">{quantity}</span>
 			</div>
-		</Link>
+		</HeaderLink>
 	);
 }
