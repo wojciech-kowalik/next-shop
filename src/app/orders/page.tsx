@@ -22,12 +22,15 @@ export default async function OrderPage() {
 
 						<p>Order Items:</p>
 						<ul>
-							{order.orderItems.map((orderItem) => (
-								<li key={orderItem.id}>
-									{orderItem.product.name} - {orderItem.quantity} -{" "}
-									{orderItem.product.price}
-								</li>
-							))}
+							{order.orderItems.map(
+								(orderItem) =>
+									orderItem && (
+										<li key={orderItem.id}>
+											{orderItem.product?.name} - {orderItem.quantity} -{" "}
+											{orderItem.product?.price}
+										</li>
+									),
+							)}
 						</ul>
 					</div>
 				))}
