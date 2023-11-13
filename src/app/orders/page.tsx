@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { getOrdersByEmail } from "@api/order";
 
+import SectionHeader from "@/ui/molecules/SectionHeader";
+
 export default async function OrderPage() {
 	const user = await currentUser();
 	const email = user?.emailAddresses[0].emailAddress ?? "";
@@ -12,28 +14,73 @@ export default async function OrderPage() {
 	}
 
 	return (
-		<div className="my-auto flex h-screen flex-col items-center">
-			<h1>Order Page</h1>
-			{orders &&
-				orders.map((order) => (
-					<div key={order.id}>
-						<h2>Order {order.id}</h2>
-						<p>Order Total: {order.total}</p>
-
-						<p>Order Items:</p>
-						<ul>
-							{order.orderItems.map(
-								(orderItem) =>
-									orderItem && (
-										<li key={orderItem.id}>
-											{orderItem.product?.name} - {orderItem.quantity} -{" "}
-											{orderItem.product?.price}
-										</li>
-									),
-							)}
-						</ul>
+		<>
+			<SectionHeader name="Orders">
+				<div className="mt-4 max-w-2xl text-base text-slate-700">
+					{user.firstName} {user.lastName} (
+					<span className="italic">{email}</span>)
+					<div>{orders.length} order(s)</div>
+				</div>
+			</SectionHeader>
+			<div>
+				<div className="-mx-4 overflow-x-auto px-4 py-4 sm:-mx-8 sm:px-8">
+					<div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
+						<table className="min-w-full leading-normal">
+							<thead>
+								<tr>
+									<th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+										Id
+									</th>
+									<th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+										Created at
+									</th>
+									<th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+										Items
+									</th>
+									<th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+										Status
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{orders &&
+									orders.map((order) => (
+										<tr key={order.id}>
+											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+												<p className="whitespace-no-wrap text-gray-900">
+													{order.id}
+												</p>
+											</td>
+											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+												<p className="whitespace-no-wrap text-gray-900">
+													<time dateTime={order.createdAt as string}>
+														{new Date(
+															order.createdAt as string,
+														).toLocaleDateString("en-US")}
+													</time>
+												</p>
+											</td>
+											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+												<p className="whitespace-no-wrap text-gray-900">
+													{order.orderItems.length}
+												</p>
+											</td>
+											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+												<span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+													<span
+														aria-hidden
+														className="absolute inset-0 rounded-full bg-green-200 opacity-50"
+													></span>
+													<span className="relative">Paid</span>
+												</span>
+											</td>
+										</tr>
+									))}
+							</tbody>
+						</table>
 					</div>
-				))}
-		</div>
+				</div>
+			</div>
+		</>
 	);
 }

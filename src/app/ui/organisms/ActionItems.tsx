@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import CartLink from "@/ui/organisms/CartLink";
+import OrderLink from "@/ui/organisms/OrderLink";
 import Search from "@/ui/organisms/Search";
 import HeaderLink from "@/ui/atoms/HeaderLink";
 
@@ -12,6 +13,7 @@ export default function ActionItems({}) {
 			<div className="ml-auto flex h-full lg:ml-4">
 				<CartLink />
 				<SignedIn>
+					<OrderLink />
 					<UserButton
 						afterSignOutUrl="/"
 						afterMultiSessionSingleSignOutUrl="/"

@@ -1,6 +1,7 @@
 fragment CartOrder on Order {
 	id
 	total
+	createdAt
 	orderItems {
 		id
 		total

@@ -11,6 +11,7 @@ export default authMiddleware({
 		"/products/(.*)",
 		"/sign-in",
 		"/sign-up",
+		"/orders",
 	],
 });
 
