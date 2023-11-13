@@ -1,6 +1,7 @@
 import { type ProductOrderByInput } from "@gql/graphql";
 import SortFilter from "@/ui/atoms/SortFilter";
 import Pagination from "@/ui/molecules/Pagination";
+import SectionHeader from "@/ui/molecules/SectionHeader";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@api/products";
 
@@ -21,19 +22,9 @@ export default async function ProductsPage({
 
 	return (
 		<>
-			<div className="bg-slate-50">
-				<div className="mx-auto max-w-7xl px-8">
-					<div className="mx-auto py-8">
-						<div className="flex flex-row items-center justify-between">
-							<h1 className="text-gray-70 text-2xl font-semibold tracking-tight">
-								All products
-							</h1>
-
-							<SortFilter page={currentPage} />
-						</div>
-					</div>
-				</div>
-			</div>
+			<SectionHeader name="All products" isFlexLayout>
+				<SortFilter page={currentPage} />
+			</SectionHeader>
 
 			<ProductList products={products} />
 			<Pagination

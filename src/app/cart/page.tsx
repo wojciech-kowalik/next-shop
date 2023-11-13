@@ -6,6 +6,7 @@ import CheckoutButton from "./CheckoutButton";
 import ChangeQuantityButton from "./ChangeQuantityButton";
 import { formatMoney } from "@/utils";
 import { getCartByIdFromCookies } from "@api/cart";
+import SectionHeader from "@/ui/molecules/SectionHeader";
 
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
@@ -22,15 +23,10 @@ export default async function CartPage() {
 		<>
 			<section className="mx-auto w-full max-w-7xl p-4">
 				<div>
-					<h1 className="mb-4 text-2xl font-bold tracking-tight text-slate-900">
-						Your shopping cart
-					</h1>
-
+					<SectionHeader name="Your shopping cart" />
+					<div></div>
 					<h2 className="sr-only">Products in your shopping cart</h2>
-					<ul
-						role="list"
-						className="divide-y divide-gray-200 border-b border-t border-gray-200"
-					>
+					<ul role="list">
 						{cart?.orderItems.map(
 							(item) =>
 								item.product && (
