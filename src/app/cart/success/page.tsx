@@ -1,4 +1,6 @@
 import Stripe from "stripe";
+import { CheckCircle2 } from "lucide-react";
+import Button from "@/ui/atoms/Button";
 
 export default async function CartSuccess({
 	searchParams,
@@ -18,5 +20,33 @@ export default async function CartSuccess({
 		searchParams.session_id,
 	);
 
-	return <div>{stripeCheckoutSession.payment_status}</div>;
+	const isPaid = stripeCheckoutSession.payment_status === "paid";
+
+	if (!isPaid) {
+		return (
+			<div className="bg-white p-6  md:mx-auto">
+				{stripeCheckoutSession.payment_status}
+			</div>
+		);
+	}
+
+	return (
+		<div className="bg-white p-6  md:mx-auto">
+			<div className="text-center">
+				<CheckCircle2 className="mx-auto my-6 h-16 w-16 text-green-600" />
+				<h3 className="text-center text-base font-semibold text-gray-900 md:text-2xl">
+					Your order has been paid
+				</h3>
+				<p className="prose my-8 text-gray-600">
+					Thank you for completing your secure online payment.
+				</p>
+				<p className="prose">Have a great day!</p>
+				<div className="py-10 text-center">
+					<a href="/">
+						<Button label="Go back" />
+					</a>
+				</div>
+			</div>
+		</div>
+	);
 }
