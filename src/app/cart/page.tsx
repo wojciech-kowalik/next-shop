@@ -11,7 +11,7 @@ import SectionHeader from "@/ui/molecules/SectionHeader";
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
 
-	if (cart && cart.orderItems.length === 0) {
+	if (!cart) {
 		redirect("/");
 	}
 
