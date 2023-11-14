@@ -5,6 +5,7 @@ import { addReviewToProductAction } from "@/ui/organisms/actions";
 import { type FormValues } from "@/types";
 import Input from "@/ui/atoms/Input";
 import Textarea from "@/ui/atoms/Textarea";
+import Button from "@/ui/atoms/Button";
 import Rating from "@/ui/molecules/Rating";
 
 export default function ReviewForm({ productId }: { productId: string }) {
@@ -73,13 +74,12 @@ export default function ReviewForm({ productId }: { productId: string }) {
 					/>
 				</div>
 			</div>
-			<button
-				className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-8 py-2 text-sm font-medium text-gray-50 hover:bg-gray-700 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-wait"
+			<Button
+				label="Submit review"
 				type="submit"
-				disabled={isSubmitting}
-			>
-				{isSubmitting ? "Submitting..." : "Submit review"}
-			</button>
+				isSubmitting={isSubmitting}
+				data-testid="button-review-subimt"
+			/>
 		</form>
 	);
 }

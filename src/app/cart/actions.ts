@@ -25,7 +25,7 @@ export async function changeItemQuantityAction(
 	revalidateTag("cart");
 }
 
-export async function paymentByStripeAction(_formData: FormData) {
+export async function paymentByStripeAction() {
 	if (!process.env.STRIPE_SECRET_KEY) {
 		throw new Error("STRIPE_SECRET_KEY is not defined");
 	}
