@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { CheckCircle2 } from "lucide-react";
+import { auth } from "@clerk/nextjs";
 import Button from "@/ui/atoms/Button";
 
 export default async function CartSuccess({
@@ -10,6 +11,8 @@ export default async function CartSuccess({
 	if (!process.env.STRIPE_SECRET_KEY) {
 		return null;
 	}
+
+	const { userId } = auth();
 
 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 		apiVersion: "2023-10-16",
@@ -42,9 +45,15 @@ export default async function CartSuccess({
 				</p>
 				<p className="prose">Have a great day!</p>
 				<div className="py-10 text-center">
-					<a href="/">
-						<Button label="Home page" />
-					</a>
+					{userId ? (
+						<a href="/orders">
+							<Button label="Go to orders" />
+						</a>
+					) : (
+						<a href="/">
+							<Button label="Home page" />
+						</a>
+					)}
 				</div>
 			</div>
 		</div>

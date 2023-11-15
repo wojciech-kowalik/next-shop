@@ -3,7 +3,7 @@
 E-commerce written in Next.js
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/wojciech-kowalik/next-shop)
+![Vercel](https://vercelbadge.vercel.app/api/wojciech-kowalik/next-shop)
 ![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/wojciech-kowalik/next-shop/next)
 ![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/wojciech-kowalik/next-shop/typescript)
 ![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/wojciech-kowalik/next-shop/react)

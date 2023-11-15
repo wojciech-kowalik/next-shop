@@ -4,14 +4,14 @@ export default authMiddleware({
 	publicRoutes: [
 		"/",
 		"/search",
-		"/cart/(.*)?",
+		"/cart/(.*)?(.*)",
 		"/categories/(.*)",
 		"/collections/(.*)",
 		"/product/(.*)",
 		"/products/(.*)",
 		"/sign-in",
 		"/sign-up",
-		"/orders",
+		"/orders/(.*)",
 		"/api/webhook/stripe",
 	],
 });

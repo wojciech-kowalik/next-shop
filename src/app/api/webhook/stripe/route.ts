@@ -31,22 +31,22 @@ export async function POST(req: NextRequest): Promise<Response> {
 	) as Stripe.DiscriminatedEvent;
 
 	const eventDataObject = event.data.object as {
+		id?: string;
 		customer_details?: { email?: string };
 		amount_total?: number;
-		metadata?: { cartId?: string };
+		metadata?: { cart_id?: string };
 	};
+	const stripeCheckoutId = eventDataObject?.id ?? "";
 	const email = eventDataObject?.customer_details?.email ?? "";
 	const total = eventDataObject?.amount_total ?? 0;
-	const cartId = eventDataObject?.metadata?.cartId ?? "";
+	const cartId = eventDataObject?.metadata?.cart_id ?? "";
 
 	if (event.type === "checkout.session.completed") {
 		console.log(`🔔  Checkout session completed!`);
 		console.log(`🔔  Email: ${email}`);
 		console.log(`🔔  Total: ${total}`);
 
-		await updateOrderDataById(cartId, email, total);
-	} else {
-		console.log(`🔔  Unhandled event type: ${event.type}`);
+		await updateOrderDataById(cartId, { email, total, stripeCheckoutId });
 	}
 
 	return new Response(null, { status: 204 });

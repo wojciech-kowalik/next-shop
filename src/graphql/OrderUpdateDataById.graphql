@@ -1,5 +1,13 @@
-mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!) {
-	updateOrder(where: { id: $id }, data: { email: $email, total: $total }) {
+mutation OrderUpdateDatalById(
+	$id: ID!
+	$email: String!
+	$total: Int!
+	$stripeCheckoutId: String!
+) {
+	updateOrder(
+		where: { id: $id }
+		data: { email: $email, total: $total, stripeCheckoutId: $stripeCheckoutId }
+	) {
 		id
 	}
 }

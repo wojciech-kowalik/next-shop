@@ -1,8 +1,8 @@
-import { graphqlFetch } from "@api/fetch";
 import {
 	OrderUpdateDatalByIdDocument,
 	OrdersGetByEmailDocument,
-} from "@gql/graphql";
+} from "../gql/graphql";
+import { graphqlFetch } from "@api/fetch";
 
 export async function getOrdersByEmail(email: string) {
 	const response = await graphqlFetch({
@@ -22,12 +22,12 @@ export async function getOrdersByEmail(email: string) {
 
 export async function updateOrderDataById(
 	id: string,
-	email: string,
-	total: number,
+	data: { email: string; total: number; stripeCheckoutId: string },
 ) {
+	const { email, total, stripeCheckoutId } = data;
 	const response = await graphqlFetch({
 		query: OrderUpdateDatalByIdDocument,
-		variables: { id, email, total },
+		variables: { id, email, total, stripeCheckoutId },
 		cache: "no-store",
 		next: {
 			tags: ["order"],

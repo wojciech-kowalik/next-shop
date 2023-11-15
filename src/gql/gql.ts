@@ -21,7 +21,7 @@ const documents = {
     "mutation CartRemoveItem($itemId: ID!) {\n  deleteOrderItem(where: {id: $itemId}) {\n    id\n  }\n}": types.CartRemoveItemDocument,
     "mutation CartUpdateItem($productId: ID!, $total: Int!, $quantity: Int!) {\n  updateOrderItem(\n    data: {quantity: $quantity, total: $total}\n    where: {id: $productId}\n  ) {\n    id\n  }\n}": types.CartUpdateItemDocument,
     "query CollectionsGetList {\n  collections {\n    name\n    slug\n    image {\n      url\n    }\n  }\n}": types.CollectionsGetListDocument,
-    "mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!) {\n  updateOrder(where: {id: $id}, data: {email: $email, total: $total}) {\n    id\n  }\n}": types.OrderUpdateDatalByIdDocument,
+    "mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!, $stripeCheckoutId: String!) {\n  updateOrder(\n    where: {id: $id}\n    data: {email: $email, total: $total, stripeCheckoutId: $stripeCheckoutId}\n  ) {\n    id\n  }\n}": types.OrderUpdateDatalByIdDocument,
     "query OrdersGetByEmail($email: String!) {\n  orders(where: {email: $email}) {\n    ...CartOrder\n  }\n}": types.OrdersGetByEmailDocument,
     "query ProductGetById($id: ID!) {\n  product(where: {id: $id}) {\n    ...ProductListItem\n  }\n}": types.ProductGetByIdDocument,
     "fragment ProductListItem on Product {\n  id\n  name\n  description\n  categories(first: 1) {\n    name\n  }\n  images(first: 1) {\n    url\n  }\n  price\n  reviews {\n    rating\n  }\n}": types.ProductListItemFragmentDoc,
@@ -65,7 +65,7 @@ export function graphql(source: "query CollectionsGetList {\n  collections {\n  
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!) {\n  updateOrder(where: {id: $id}, data: {email: $email, total: $total}) {\n    id\n  }\n}"): typeof import('./graphql').OrderUpdateDatalByIdDocument;
+export function graphql(source: "mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!, $stripeCheckoutId: String!) {\n  updateOrder(\n    where: {id: $id}\n    data: {email: $email, total: $total, stripeCheckoutId: $stripeCheckoutId}\n  ) {\n    id\n  }\n}"): typeof import('./graphql').OrderUpdateDatalByIdDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

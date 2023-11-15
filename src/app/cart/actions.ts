@@ -48,7 +48,7 @@ export async function paymentByStripeAction() {
 		customer_email: email,
 		payment_method_types: ["card"],
 		metadata: {
-			cartId: cart.id,
+			cart_id: cart.id,
 		},
 		line_items: cart.orderItems
 			.map((item) =>

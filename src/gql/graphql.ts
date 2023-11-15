@@ -10810,6 +10810,7 @@ export type OrderUpdateDatalByIdMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   email: Scalars['String']['input'];
   total: Scalars['Int']['input'];
+  stripeCheckoutId: Scalars['String']['input'];
 }>;
 
 
@@ -11045,8 +11046,11 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
 export const OrderUpdateDatalByIdDocument = new TypedDocumentString(`
-    mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!) {
-  updateOrder(where: {id: $id}, data: {email: $email, total: $total}) {
+    mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!, $stripeCheckoutId: String!) {
+  updateOrder(
+    where: {id: $id}
+    data: {email: $email, total: $total, stripeCheckoutId: $stripeCheckoutId}
+  ) {
     id
   }
 }
