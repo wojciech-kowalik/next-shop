@@ -1,0 +1,5 @@
+mutation OrderUpdateDatalById($id: ID!, $email: String!, $total: Int!) {
+	updateOrder(where: { id: $id }, data: { email: $email, total: $total }) {
+		id
+	}
+}

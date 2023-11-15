@@ -1,5 +1,8 @@
-import { OrdersGetByEmailDocument } from "@gql/graphql";
 import { graphqlFetch } from "@api/fetch";
+import {
+	OrderUpdateDatalByIdDocument,
+	OrdersGetByEmailDocument,
+} from "@gql/graphql";
 
 export async function getOrdersByEmail(email: string) {
 	const response = await graphqlFetch({
@@ -15,4 +18,21 @@ export async function getOrdersByEmail(email: string) {
 	}
 
 	return response.orders;
+}
+
+export async function updateOrderDataById(
+	id: string,
+	email: string,
+	total: number,
+) {
+	const response = await graphqlFetch({
+		query: OrderUpdateDatalByIdDocument,
+		variables: { id, email, total },
+		cache: "no-store",
+		next: {
+			tags: ["order"],
+		},
+	});
+
+	return response.updateOrder?.id;
 }
