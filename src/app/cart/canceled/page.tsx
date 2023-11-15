@@ -20,7 +20,7 @@ export default function CartCanceled() {
 				</p>
 				<div className="py-10 text-center">
 					<a href="/">
-						<Button label="Go back" />
+						<Button label="Home page" />
 					</a>
 				</div>
 			</div>

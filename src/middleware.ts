@@ -4,7 +4,7 @@ export default authMiddleware({
 	publicRoutes: [
 		"/",
 		"/search",
-		"/cart",
+		"/cart/(.*)?",
 		"/categories/(.*)",
 		"/collections/(.*)",
 		"/product/(.*)",

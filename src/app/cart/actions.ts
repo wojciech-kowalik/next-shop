@@ -1,6 +1,7 @@
 "use server";
 
 import Stripe from "stripe";
+import { currentUser } from "@clerk/nextjs";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -40,7 +41,11 @@ export async function paymentByStripeAction() {
 		return;
 	}
 
+	const user = await currentUser();
+	const email = user?.emailAddresses[0].emailAddress ?? undefined;
+
 	const session = await stripe.checkout.sessions.create({
+		customer_email: email,
 		payment_method_types: ["card"],
 		metadata: {
 			cartId: cart.id,

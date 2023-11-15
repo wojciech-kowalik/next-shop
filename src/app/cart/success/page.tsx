@@ -43,7 +43,7 @@ export default async function CartSuccess({
 				<p className="prose">Have a great day!</p>
 				<div className="py-10 text-center">
 					<a href="/">
-						<Button label="Go back" />
+						<Button label="Home page" />
 					</a>
 				</div>
 			</div>
