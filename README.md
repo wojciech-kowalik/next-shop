@@ -1,8 +1,12 @@
 # next-shop
 
-The e-shop written in Next.js
+E-commerce written in Next.js
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/wojciech-kowalik/next-shop)
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/wojciech-kowalik/next-shop/next)
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/wojciech-kowalik/next-shop/typescript)
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/wojciech-kowalik/next-shop/react)
 
 ## Authors
 
@@ -43,3 +47,8 @@ Generate graphql types
 ```bash
   pnpm run codegen
 ```
+
+## Docs
+
+Stripe testing payment cards
+https://stripe.com/docs/testing
