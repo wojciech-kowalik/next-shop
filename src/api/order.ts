@@ -1,4 +1,5 @@
 import {
+	CartGetByIdDocument,
 	OrderUpdateDatalByIdDocument,
 	OrdersGetByEmailDocument,
 } from "../gql/graphql";
@@ -35,4 +36,16 @@ export async function updateOrderDataById(
 	});
 
 	return response.updateOrder?.id;
+}
+
+export async function getOrderById(id: string) {
+	const { order } = await graphqlFetch({
+		query: CartGetByIdDocument,
+		variables: { id },
+	});
+	if (!order) {
+		throw new Error("Order not found");
+	}
+
+	return order;
 }

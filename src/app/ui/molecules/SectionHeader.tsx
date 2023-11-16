@@ -6,7 +6,7 @@ export default function SectionHeader({
 	children,
 }: PropsWithChildren<{ name: string; isFlexLayout?: boolean }>) {
 	return (
-		<div className="mb-4 divide-y divide-gray-200  border-b border-gray-200 bg-slate-50">
+		<section className="mb-4 divide-y divide-gray-200  border-b border-gray-200 bg-slate-50">
 			<div
 				className={`mx-auto max-w-7xl px-8 py-8 ${
 					isFlexLayout ? "flex flex-row items-center justify-between" : ""
@@ -17,6 +17,6 @@ export default function SectionHeader({
 				</h1>
 				{children}
 			</div>
-		</div>
+		</section>
 	);
 }

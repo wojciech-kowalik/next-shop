@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { getOrdersByEmail } from "@api/order";
 
 import SectionHeader from "@/ui/molecules/SectionHeader";
+import { formatMoney } from "@/utils";
 
-export default async function OrderPage() {
+export default async function OrdersPage() {
 	const user = await currentUser();
 	const email = user?.emailAddresses[0].emailAddress ?? "";
 	const orders = await getOrdersByEmail(email);
@@ -38,6 +40,9 @@ export default async function OrderPage() {
 										Items
 									</th>
 									<th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
+										Total
+									</th>
+									<th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
 										Status
 									</th>
 								</tr>
@@ -48,7 +53,12 @@ export default async function OrderPage() {
 										<tr key={order.id}>
 											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
 												<p className="whitespace-no-wrap text-gray-900">
-													{order.id}
+													<Link
+														className="text-sm text-blue-600 underline hover:text-blue-500"
+														href={`/orders/${order.id}`}
+													>
+														{order.id}
+													</Link>
 												</p>
 											</td>
 											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
@@ -63,6 +73,11 @@ export default async function OrderPage() {
 											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
 												<p className="whitespace-no-wrap text-gray-900">
 													{order.orderItems.length}
+												</p>
+											</td>
+											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+												<p className="whitespace-no-wrap text-gray-900">
+													{formatMoney(order.total / 100)}
 												</p>
 											</td>
 											<td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
