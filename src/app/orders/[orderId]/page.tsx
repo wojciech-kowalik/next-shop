@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import SectionHeader from "@/ui/molecules/SectionHeader";
 import OrderItems from "@/ui/organisms/OrderItems";
+import OrderSummary from "@/ui/organisms/OrderSummary";
 import { getOrderById } from "@api/order";
-import { formatMoney } from "@/utils";
 
 export default async function OrderPage({
 	params,
@@ -26,24 +26,6 @@ export default async function OrderPage({
 					</time>
 				</div>
 			</SectionHeader>
-			<div className="mb-4 mt-4">
-				<div className="rounded-lg bg-gray-50 p-4">
-					<h2 className="sr-only">Order summary</h2>
-					<div className="-my-4 divide-y divide-gray-200 text-xl">
-						<div className="flex items-center justify-between py-4">
-							<div>
-								<div className="text-slate-900">Order total</div>
-							</div>
-							<div className="font-semibold text-slate-900">
-								{formatMoney(order.total / 100)}
-								<div className="text-right text-xs text-slate-500">
-									VAT included
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<OrderItems
 				order={order}
 				renderQantity={(item) => (
@@ -52,6 +34,7 @@ export default async function OrderPage({
 					</span>
 				)}
 			/>
+			<OrderSummary total={order.total} />
 		</>
 	);
 }

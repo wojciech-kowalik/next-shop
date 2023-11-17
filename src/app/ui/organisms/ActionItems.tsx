@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import CartLink from "@/ui/organisms/CartLink";
-import OrderLink from "@/ui/organisms/OrderLink";
+import CartLink from "@/ui/molecules/CartLink";
+import OrderLink from "@/ui/molecules/OrderLink";
 import Search from "@/ui/organisms/Search";
 import HeaderLink from "@/ui/atoms/HeaderLink";
 
