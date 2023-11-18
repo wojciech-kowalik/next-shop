@@ -9,6 +9,20 @@ import ActionItems from "@/ui/organisms/ActionItems";
 
 const inter = Merriweather_Sans({ subsets: ["latin"] });
 
+export const metadata = {
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? ""),
+	alternates: {
+		canonical: "/",
+		languages: {
+			"en-US": "/en-US",
+			"de-DE": "/de-DE",
+		},
+	},
+	openGraph: {
+		images: "/og-image.png",
+	},
+};
+
 export default function RootLayout({
 	children,
 }: {

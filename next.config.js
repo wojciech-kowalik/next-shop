@@ -3,8 +3,6 @@ const nextConfig = {
 	pageExtensions: ["ts", "tsx", "md", "mdx"],
 	experimental: {
 		typedRoutes: true,
-		mdxRss: true,
-		serverActions: true,
 	},
 	images: {
 		remotePatterns: [
