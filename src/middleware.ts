@@ -13,6 +13,9 @@ export default authMiddleware({
 		"/sign-up",
 		"/orders/(.*)",
 		"/api/webhook/stripe",
+		"/policy",
+		"/about",
+		"/regulations",
 	],
 });
 
