@@ -13,8 +13,10 @@ export default function RemoveButton({ itemId }: { itemId: string }) {
 			disabled={isPending}
 			onClick={() => {
 				startTransition(async () => {
-					await removeItemFromCartAction(itemId);
-					toast.success("Product removed from cart");
+					await toast.promise(removeItemFromCartAction(itemId), {
+						success: "Removed from cart",
+						error: "Error removing from cart",
+					});
 					router.refresh();
 				});
 			}}

@@ -15,8 +15,10 @@ export default function AddToCartButton({ productId }: { productId: string }) {
 			isSubmitting={isPending}
 			onClick={() => {
 				startTransition(async () => {
-					await addProductToCartAction(productId);
-					toast.success("Product added to cart");
+					await toast.promise(addProductToCartAction(productId), {
+						success: "Product added to cart",
+						error: "Error adding product to cart",
+					});
 				});
 			}}
 		/>

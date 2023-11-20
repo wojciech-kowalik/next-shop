@@ -32,10 +32,13 @@ export default function ChangeQuantityButton({
 			onClick={() =>
 				startTransition(async () => {
 					if (quantity >= 1) {
-						await changeItemQuantityAction(itemId, quantity, price);
-						toast.success("Quantity updated", {
-							toastId: `quantity-updated-item-${itemId}`,
-						});
+						await toast.promise(
+							changeItemQuantityAction(itemId, quantity, price),
+							{
+								success: "Quantity updated",
+								error: "Error updating quantity",
+							},
+						);
 					}
 				})
 			}

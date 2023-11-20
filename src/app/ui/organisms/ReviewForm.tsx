@@ -18,8 +18,10 @@ export default function ReviewForm({ productId }: { productId: string }) {
 	} = useForm<FormValues>();
 
 	const onSubmit: SubmitHandler<FormValues> = async (data) => {
-		await addReviewToProductAction(data, productId);
-		toast.success("Review added");
+		await toast.promise(addReviewToProductAction(data, productId), {
+			success: "Review added to product",
+			error: "Error adding review to product",
+		});
 	};
 
 	return (
