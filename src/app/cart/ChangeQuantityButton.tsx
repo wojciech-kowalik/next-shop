@@ -33,7 +33,9 @@ export default function ChangeQuantityButton({
 				startTransition(async () => {
 					if (quantity >= 1) {
 						await changeItemQuantityAction(itemId, quantity, price);
-						toast.success("Quantity updated");
+						toast.success("Quantity updated", {
+							toastId: `quantity-updated-item-${itemId}`,
+						});
 					}
 				})
 			}
