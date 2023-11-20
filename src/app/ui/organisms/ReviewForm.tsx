@@ -1,6 +1,7 @@
 "use client";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { addReviewToProductAction } from "@/ui/organisms/actions";
 import { type FormValues } from "@/types";
 import Input from "@/ui/atoms/Input";
@@ -18,6 +19,7 @@ export default function ReviewForm({ productId }: { productId: string }) {
 
 	const onSubmit: SubmitHandler<FormValues> = async (data) => {
 		await addReviewToProductAction(data, productId);
+		toast.success("Review added");
 	};
 
 	return (

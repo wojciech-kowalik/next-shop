@@ -1,5 +1,7 @@
 import "./globals.css";
 import "@smastrom/react-rating/style.css";
+import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer } from "react-toastify";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Merriweather_Sans } from "next/font/google";
 import Navigation from "@/ui/organisms/Navigation";
@@ -44,6 +46,12 @@ export default function RootLayout({
 					</div>
 
 					<Footer />
+					<ToastContainer
+						role="alert"
+						limit={2}
+						autoClose={1500}
+						position="top-center"
+					/>
 				</body>
 			</html>
 		</ClerkProvider>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
+import { toast } from "react-toastify";
 import { addProductToCartAction } from "./actions";
 import Button from "@/ui/atoms/Button";
 
@@ -15,6 +16,7 @@ export default function AddToCartButton({ productId }: { productId: string }) {
 			onClick={() => {
 				startTransition(async () => {
 					await addProductToCartAction(productId);
+					toast.success("Product added to cart");
 				});
 			}}
 		/>

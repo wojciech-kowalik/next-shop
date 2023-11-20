@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "react-toastify";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { removeItemFromCartAction } from "@/cart/actions";
@@ -13,6 +14,7 @@ export default function RemoveButton({ itemId }: { itemId: string }) {
 			onClick={() => {
 				startTransition(async () => {
 					await removeItemFromCartAction(itemId);
+					toast.success("Product removed from cart");
 					router.refresh();
 				});
 			}}

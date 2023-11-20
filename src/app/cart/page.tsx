@@ -11,7 +11,7 @@ import OrderItems from "@/ui/organisms/OrderItems";
 export default async function CartPage() {
 	const cart = await getCartByIdFromCookies();
 
-	if (!cart) {
+	if (!cart || !cart.orderItems.length) {
 		redirect("/");
 	}
 

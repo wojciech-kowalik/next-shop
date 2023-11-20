@@ -1,5 +1,5 @@
 "use client";
-
+import { toast } from "react-toastify";
 import {
 	useTransition,
 	type ComponentPropsWithoutRef,
@@ -31,8 +31,10 @@ export default function ChangeQuantityButton({
 			disabled={isPending}
 			onClick={() =>
 				startTransition(async () => {
-					if (quantity >= 1)
+					if (quantity >= 1) {
 						await changeItemQuantityAction(itemId, quantity, price);
+						toast.success("Quantity updated");
+					}
 				})
 			}
 		>
