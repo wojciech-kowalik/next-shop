@@ -34,6 +34,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body className={`${inter.className} flex min-h-screen flex-col`}>
+					<ToastContainer role="alert" position="top-center" />
 					<Header>
 						<Navigation />
 						<ActionItems />
@@ -46,12 +47,6 @@ export default function RootLayout({
 					</div>
 
 					<Footer />
-					<ToastContainer
-						role="alert"
-						limit={2}
-						autoClose={1500}
-						position="top-center"
-					/>
 				</body>
 			</html>
 		</ClerkProvider>
