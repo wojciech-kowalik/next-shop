@@ -20,6 +20,7 @@
 				"name": "next"
 			}
 		],
+		"types": ["@testing-library/jest-dom"],
 		"paths": {
 			"@/*": ["./src/app/*"],
 			"@types": ["./src/app/types.ts"],
@@ -32,6 +33,7 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
+		"**/*.test.tsx",
 		".next/types/**/*.ts",
 		"tailwind.config.js",
 		".graphqlrc.ts"
