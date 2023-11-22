@@ -48,6 +48,12 @@ Generate graphql types
   pnpm run codegen
 ```
 
+Unit tests
+
+```bash
+  pnpm run test
+```
+
 ## Docs
 
 Stripe testing payment cards

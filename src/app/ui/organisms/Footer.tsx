@@ -6,6 +6,7 @@ export default function Footer() {
 			<div className="mx-auto w-full max-w-screen-xl p-4 ">
 				<div className="sm:flex sm:items-center sm:justify-between">
 					<Image
+						role="img"
 						priority
 						src="/images/logo.svg"
 						height={120}
@@ -44,6 +45,7 @@ export default function Footer() {
 							className="inline-flex cursor-pointer justify-center rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
 						>
 							<Image
+								role="img"
 								priority
 								width={16}
 								height={16}
