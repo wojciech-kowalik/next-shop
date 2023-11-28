@@ -16,6 +16,8 @@ export default function Input({
 		<>
 			<Label>{label}</Label>
 			<input
+				type={isEmail ? "email" : "text"}
+				role="textbox"
 				className="mb-3 block w-full appearance-none rounded border  px-4 py-3 leading-tight text-gray-700 required:border-red-500 focus:bg-white focus:outline-none"
 				{...register(name, {
 					required,
@@ -24,7 +26,9 @@ export default function Input({
 			/>
 			{errors && errors[name] && required && (
 				<p className="text-xs italic text-red-500">
-					Please fill out this field.
+					{isEmail
+						? `Please enter a valid email.`
+						: `Please fill out this field.`}
 				</p>
 			)}
 		</>
