@@ -43,7 +43,7 @@ type InputType = {
 	label: string;
 	register: UseFormRegister<FormValues>;
 	required: boolean;
-	errors: FieldErrors<FormValues>;
+	errors?: FieldErrors<FormValues>;
 	isEmail?: boolean;
 };
 

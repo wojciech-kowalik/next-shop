@@ -105,5 +105,5 @@
 			}
 		}
 	],
-	"ignorePatterns": ["*.js", "*.jsx"]
+	"ignorePatterns": ["*.js", "*.jsx", "*.d.ts", "*.js.map", "*.jsx.map", ".yml"]
 }
