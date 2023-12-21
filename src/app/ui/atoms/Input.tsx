@@ -25,7 +25,7 @@ export default function Input({
 				})}
 			/>
 			{errors && errors[name] && required && (
-				<p className="text-xs italic text-red-500">
+				<p role="alert" className="text-xs italic text-red-500">
 					{isEmail
 						? `Please enter a valid email.`
 						: `Please fill out this field.`}
