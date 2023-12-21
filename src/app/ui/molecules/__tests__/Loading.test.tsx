@@ -13,7 +13,7 @@ describe("Loading", () => {
 	it("renders the accessible label correctly", () => {
 		render(<Loading />);
 
-		const label = screen.getByText("Loading...");
+		const label = screen.getByTestId("screen-reader");
 		expect(label).toBeInTheDocument();
 		expect(label).toHaveClass("sr-only");
 	});

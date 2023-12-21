@@ -26,7 +26,8 @@
 			"@types": ["./src/app/types.ts"],
 			"@api/*": ["./src/api/*"],
 			"@gql/*": ["./src/gql/*"],
-			"@hooks/*": ["./src/hooks/*"]
+			"@hooks/*": ["./src/hooks/*"],
+			"@utils/*": ["./src/utils/*"]
 		}
 	},
 	"include": [
