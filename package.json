@@ -9,7 +9,8 @@
 		"lint": "next lint --fix --dir src",
 		"codegen": "graphql-codegen --config .graphqlrc.ts",
 		"test": "jest",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"compile": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@clerk/nextjs": "4.29.3",
