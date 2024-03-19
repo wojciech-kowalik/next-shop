@@ -39,7 +39,7 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-      - name: Compile
+      - name: Compile ts
         run: pnpm compile
-      - name: Test
+      - name: Test code
         run: pnpm test
