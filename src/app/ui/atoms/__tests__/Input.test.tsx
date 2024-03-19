@@ -46,12 +46,16 @@ describe("Input", () => {
 
 	it("shows proper behavior of email field", async () => {
 		render(<TestedFormWithInput isEmail />);
+		const textBox = screen.getByRole("textbox");
 
 		await userEvent.click(screen.getByRole("button"));
+
+		expect(textBox).toHaveAttribute("type", "email");
 		expect(screen.getByText("Please enter a valid email.")).toBeInTheDocument();
-		await userEvent.type(screen.getByRole("textbox"), "test@test.pl");
-		expect(
-			screen.queryByText("Please enter a valid email."),
-		).not.toBeInTheDocument();
+		expect(screen.getByRole("alert")).toHaveClass("text-red-500");
+
+		await userEvent.type(textBox, "test@test.pl");
+
+		expect(screen.queryByRole("alert")).not.toBeInTheDocument();
 	});
 });
